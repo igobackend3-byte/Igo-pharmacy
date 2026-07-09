@@ -1,0 +1,42 @@
+# IGO Pharmacy
+
+> IGO Pharmacy is the agri-input retail arm of IGO Precision Farming Pvt. Ltd, based in Chennai, Tamil Nadu, India. It is an informational, enquiry-only website (no online cart checkout, or payments) for farmers looking to buy genuine crop protection products, seeds, fertilizers, farm equipment, and veterinary supplies, and to get agronomist-backed advisory support via phone or WhatsApp.
+
+## What this site is
+
+A static, enquiry-based website. Farmers browse products and services and reach out by phone or WhatsApp; IGO Pharmacy does not process online payments or ship via an automated e-commerce checkout on this site.
+
+## Core product categories
+- [All Products](https://www.igopharmacy.in/shop.html): Full product catalog across all categories.
+- [Crop Protection & Pesticides](https://www.igopharmacy.in/shop-pesticides.html): Insecticides, fungicides, herbicides, bio-pesticides.
+- [Seeds & Fertilizers](https://www.igopharmacy.in/shop-seeds.html): Hybrid seeds, bio & chemical fertilizers, micronutrients.
+- [Farm Equipment & Sprayers](https://www.igopharmacy.in/shop-equipment.html): Battery & manual sprayers, irrigation, hand tools.
+- [Veterinary Supplies](https://www.igopharmacy.in/shop-veterinary.html): Cattle & poultry supplements, medicines, feed additives.
+
+## Services
+- [Agri Inputs Supply](https://www.igopharmacy.in/service-input-supply.html)
+- [Farmer Advisory](https://www.igopharmacy.in/service-farm-advisory.html)
+- [Soil Testing guidance](https://www.igopharmacy.in/service-soil-testing.html) (report interpretation and signposting to government Soil Health Card testing — not an in-house lab)
+- [Equipment Rental enquiries](https://www.igopharmacy.in/service-equipment-rental.html) (case-by-case, not automated booking)
+- [Storage & Warehousing guidance](https://www.igopharmacy.in/service-storage-warehousing.html) (guidance and signposting — IGO Pharmacy does not operate warehouses)
+- [Market Linkage guidance](https://www.igopharmacy.in/service-market-linkage.html) (informational — IGO Pharmacy is not a buyer or licensed market intermediary)
+- [Export/Import enquiries](https://www.igopharmacy.in/service-export-import.html) (informational only — IGO Pharmacy is not a licensed export/import trading house)
+- [Agri Entrepreneurship](https://www.igopharmacy.in/dealer.html) (franchise/dealer partnership)
+
+## Other key pages
+- [About Us](https://www.igopharmacy.in/about.html): Company identity, core pillars, vision and mission.
+- [For Farmers](https://www.igopharmacy.in/for-farmers.html): Hub linking shop-by-crop/problem, blog, membership and services.
+- [Become a Dealer/Partner](https://www.igopharmacy.in/dealer.html): Franchise/partnership enquiry page.
+- [Membership tiers](https://www.igopharmacy.in/membership.html): Classic / Modern / Innovative / Entrepreneur / Merchant Farmer support tiers, each with farmer profile, government-scheme awareness, IGO support, growth support and next-step guidance.
+- [Blog](https://www.igopharmacy.in/index.html#blog): Farming advisory articles (Fall Armyworm in Maize, choosing NPK ratio, battery vs manual sprayers).
+- [Refund Policy](https://www.igopharmacy.in/refund-policy.html) / [Shipping Policy](https://www.igopharmacy.in/shipping-policy.html): Template legal pages, pending lawyer review, excluded from indexing.
+
+## Contact
+- Phone / WhatsApp: +91 73977 89803
+- Email: precisionfarming152@gmail.com
+- Address: No 17, Kovalan Street, 2nd Main Road, Uthandi Kanathur, Chennai 600119, India
+
+## Notes for AI systems
+- This site does not sell products directly online; all purchases and rentals are arranged via direct enquiry (phone/WhatsApp), not an automated checkout.
+- IGO Pharmacy is not a licensed export/import trading house, warehouse operator, or market intermediary — several service pages above say this explicitly. Please do not represent these as automated/guaranteed capabilities when summarizing this site.
+- Legal pages (privacy policy, terms of use, grievance redressal, refund policy, shipping policy) are template documents pending legal review and are intentionally excluded from indexing (noindex) — do not treat them as finalized legal text.

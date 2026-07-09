@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+Disallow: /privacy.html
+Disallow: /terms.html
+Disallow: /grievance-redressal.html
+Disallow: /refund-policy.html
+Disallow: /shipping-policy.html
+
+# AI / answer-engine crawlers — explicitly allowed (see llms.txt for a content summary)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# NOTE: this sitemap URL uses a placeholder domain (igopharmacy.in) — update both
+# the domain here and in sitemap.xml/canonical tags once a real domain is chosen.
+Sitemap: https://www.igopharmacy.in/sitemap.xml

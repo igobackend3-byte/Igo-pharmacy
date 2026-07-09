@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart | IGO Pharmacy</title>
+<meta name="description" content="Review items in your IGO Pharmacy cart and send your order for confirmation over WhatsApp.">
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="css/style.css?v=20260709b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b4d3e'/%3E%3Ctext x='32' y='30' font-family='Arial,sans-serif' font-size='16' font-weight='800' fill='%23a8e600' text-anchor='middle'%3EIGO%3C/text%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHARMA%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <a href="tel:+917397789803">+91 73977 89803</a>
+      <a href="https://wa.me/917397789803" target="_blank" rel="noopener">WhatsApp Support</a>
+    </div>
+  </div>
+</div>
+
+<header id="siteHeader">
+  <div class="container nav-wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 22 C 33 4, 4 14, 10 40 C 15 60, 34 66, 50 80 Z" fill="#4CAF50"/>
+          <path d="M50 22 C 67 4, 92 16, 84 42 C 79 60, 62 66, 50 80 Z" fill="#1B6E4C"/>
+          <path d="M50 22 L50 80" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+          <circle cx="70" cy="60" r="6.5" fill="#1B6E4C"/>
+          <circle cx="80" cy="68" r="4.5" fill="#1B6E4C"/>
+          <circle cx="75" cy="77" r="3" fill="#1B6E4C"/>
+        </svg>
+      </span>
+      <span class="logo-text"><span class="logo-igo">IGO</span><span class="logo-pharma">Pharma</span></span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#categories">Shop</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="dealer.html">Franchise</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a href="cart.html" class="icon-btn cart-icon-wrap" title="View Cart" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+      <a class="btn btn-dark" href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%20have%20a%20product%20enquiry." target="_blank" rel="noopener">WhatsApp <span class="hide-mobile">Us</span></a>
+    </div>
+  </div>
+</header>
+<div id="main"></div>
+
+<section class="sv-section" style="padding-top:36px;">
+  <div class="sv-container" style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-head">
+      <div class="eyebrow">Your Order</div>
+      <h1 style="color:var(--dark-green);font-size:clamp(24px,3vw,32px);font-family:'Poppins',sans-serif;font-weight:700;">Shopping Cart</h1>
+      <p style="color:var(--gray);max-width:640px;margin-top:8px;">This cart is stored in your browser only. Checkout sends an itemised order summary to our team on WhatsApp — nothing is charged automatically, and our team will confirm stock, final pricing and delivery before anything is dispatched.</p>
+    </div>
+
+    <div id="cartContent" class="cart-page-grid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;">
+      <span>&copy; 2026 IGO Pharmacy. All Rights Reserved. Powered by IGO Precision Farming Pvt. Ltd.</span>
+      <span><a href="index.html" style="text-decoration:underline;">Back to Home</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/cart.js?v=20260709b"></script>
+<script>
+(function(){
+  function money(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
+
+  function render(){
+    var items = window.IGO_CART.getCart();
+    var root = document.getElementById('cartContent');
+    if(!items.length){
+      root.innerHTML = '<div class="cart-empty" style="grid-column:1/-1;"><p style="font-size:16px;margin-bottom:16px;">Your cart is empty.</p><a href="index.html#categories" class="btn btn-primary">Browse the Shop</a></div>';
+      return;
+    }
+    var rows = items.map(function(i){
+      return '<div class="cart-row" data-id="'+i.id+'">' +
+        '<img src="'+i.img+'" onerror="this.onerror=null;this.src=\'img/category_seeds_hybrid_1783401471868.webp\';" alt="'+i.name+'" loading="lazy" decoding="async">' +
+        '<div class="cart-row-info"><h4>'+i.name+'</h4><div class="cart-row-price">'+money(i.price)+' each</div></div>' +
+        '<div class="qty-controls">' +
+          '<button type="button" data-dec>-</button>' +
+          '<span>'+i.qty+'</span>' +
+          '<button type="button" data-inc>+</button>' +
+        '</div>' +
+        '<div style="width:80px;text-align:right;font-weight:800;color:var(--dark-green);">'+money(i.price*i.qty)+'</div>' +
+        '<button type="button" class="cart-remove" data-remove>Remove</button>' +
+      '</div>';
+    }).join('');
+
+    var total = window.IGO_CART.getCartTotal();
+    var summary = '<div class="cart-summary">' +
+      '<h4>Order Summary</h4>' +
+      '<div style="font-size:13px;color:var(--gray);">'+items.length+' item(s) in cart</div>' +
+      '<div class="cart-total-row"><span>Estimated Total</span><span>'+money(total)+'</span></div>' +
+      '<p class="small" style="font-size:12px;color:var(--gray);margin-top:10px;">Final pricing confirmed by our team based on stock and any bulk discount.</p>' +
+      '<a href="'+window.IGO_CART.buildWhatsAppOrderLink()+'" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:14px;">Checkout on WhatsApp</a>' +
+      '<a href="index.html#categories" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px;">Continue Shopping</a>' +
+    '</div>';
+
+    root.innerHTML = '<div>' + rows + '</div>' + summary;
+
+    root.querySelectorAll('[data-inc]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.closest('.cart-row').getAttribute('data-id');
+        var item = window.IGO_CART.getCart().find(function(i){ return i.id===id; });
+        window.IGO_CART.updateQty(id, item.qty+1);
+        render();
+      });
+    });
+    root.querySelectorAll('[data-dec]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.closest('.cart-row').getAttribute('data-id');
+        var item = window.IGO_CART.getCart().find(function(i){ return i.id===id; });
+        if(item.qty<=1) return;
+        window.IGO_CART.updateQty(id, item.qty-1);
+        render();
+      });
+    });
+    root.querySelectorAll('[data-remove]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.closest('.cart-row').getAttribute('data-id');
+        window.IGO_CART.removeFromCart(id);
+        render();
+      });
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>
