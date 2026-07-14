@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Membership Levels | IGO Pharmacy</title>
 <meta name="description" content="Five IGO Pharmacy farmer support tiers — Classic, Modern, Innovative, Entrepreneur and Merchant Farmer — matched to your farm size and how you farm.">
-<link rel="stylesheet" href="css/style.css?v=20260709b">
+<link rel="stylesheet" href="css/style.css?v=20260713c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b4d3e'/%3E%3Ctext x='32' y='30' font-family='Arial,sans-serif' font-size='16' font-weight='800' fill='%23a8e600' text-anchor='middle'%3EIGO%3C/text%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHARMA%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="IGO Pharmacy">
@@ -14,31 +14,54 @@
 <meta property="og:image" content="img/hero_bg_farm_landscape_1783401436598.webp">
 <link rel="canonical" href="https://www.igopharmacy.in/membership.html">
 <style>
-  .sc-section{padding:56px 0;}
-  .sc-container{max-width:1180px;margin:0 auto;padding:0 24px;}
-  .sc-hero{position:relative;background:linear-gradient(120deg,var(--dark-green),var(--green));color:var(--white);overflow:hidden;padding:52px 0;}
-  .sc-hero h1{font-size:clamp(26px,3.4vw,38px);margin:14px 0 12px;line-height:1.15;}
-  .sc-hero p{color:#d3e8da;font-size:15px;max-width:640px;}
-  .sc-crumb{font-size:12.5px;color:#cfe6da;margin-bottom:6px;}
+  .sc-section{padding:64px 0;}
+  .sc-container{max-width:1220px;margin:0 auto;padding:0 24px;}
+  .sc-hero{position:relative;background:linear-gradient(120deg,var(--dark-green),var(--green));color:var(--white);overflow:hidden;padding:60px 0 64px;}
+  .sc-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(650px 300px at 90% -10%, rgba(139,196,0,0.28), transparent 60%);pointer-events:none;}
+  .sc-hero h1{font-size:clamp(28px,3.8vw,42px);margin:16px 0 14px;line-height:1.15;letter-spacing:-.01em;}
+  .sc-hero p{color:#d3e8da;font-size:16px;max-width:660px;line-height:1.6;}
+  .sc-crumb{font-size:12.5px;color:#cfe6da;margin-bottom:8px;}
   .sc-crumb a{color:#cfe6da;text-decoration:underline;}
-  .mp-tier-row{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 30px;margin-bottom:20px;box-shadow:var(--shadow);}
-  .mp-tier-row.mp-tier-hi{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime),var(--shadow);}
-  .mp-tier-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-  .mp-tier-head-l .mp-tier-id{font-size:12px;font-weight:800;color:var(--lime);letter-spacing:.06em;}
-  .mp-tier-head-l .mp-tier-tag{font-size:12px;color:var(--blue-dark);font-weight:600;margin-top:2px;}
-  .mp-tier-head-l h3{color:var(--dark-green);font-size:22px;margin:6px 0 4px;}
-  .mp-tier-head-l p{color:var(--gray);font-size:13px;max-width:440px;}
+
+  .mp-tier-row{position:relative;background:var(--white);border:1px solid var(--border);border-radius:20px;padding:36px 38px;margin-bottom:26px;box-shadow:0 3px 14px rgba(15,46,33,0.06);border-top:5px solid var(--tier-accent,var(--lime));transition:transform .2s ease,box-shadow .2s ease;}
+  .mp-tier-row:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,46,33,0.12);}
+  .mp-tier-row:nth-of-type(1){--tier-accent:#a3d65c;}
+  .mp-tier-row:nth-of-type(2){--tier-accent:#7cc142;}
+  .mp-tier-row:nth-of-type(3){--tier-accent:#8bc400;}
+  .mp-tier-row:nth-of-type(4){--tier-accent:#2f9e6f;}
+  .mp-tier-row:nth-of-type(5){--tier-accent:#1b6e4c;}
+  .mp-tier-row.mp-tier-hi{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime),0 16px 40px rgba(139,196,0,0.18);}
+  .mp-tier-ribbon{position:absolute;top:-14px;right:36px;background:linear-gradient(135deg,var(--lime),#9ed40e);color:var(--dark-green);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 16px;border-radius:999px;box-shadow:0 6px 16px rgba(139,196,0,0.35);}
+
+  .mp-tier-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:26px;padding-bottom:22px;border-bottom:1px solid var(--border);}
+  .mp-tier-head-l{display:flex;gap:16px;align-items:flex-start;}
+  .mp-tier-num{flex-shrink:0;width:48px;height:48px;border-radius:14px;background:linear-gradient(155deg,var(--tier-accent,var(--lime)),var(--dark-green));color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;font-family:'Poppins',sans-serif;box-shadow:0 6px 14px rgba(27,77,62,0.25);}
+  .mp-tier-head-l .mp-tier-tag{font-size:12px;color:var(--blue-dark);font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .mp-tier-head-l h3{color:var(--dark-green);font-size:28px;margin:5px 0 6px;font-family:'Poppins',sans-serif;letter-spacing:-.01em;}
+  .mp-tier-head-l p{color:var(--gray);font-size:14.5px;max-width:460px;line-height:1.55;}
   .mp-tier-cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
-  .mp-tier-cta .btn{white-space:nowrap;}
-  .mp-tier-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;}
-  .mp-col h5{font-size:11.5px;color:var(--dark-green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
-  .mp-col ul{margin:0;padding-left:15px;}
-  .mp-col li{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:3px;}
-  .mp-col-note{display:block;font-size:10px;color:#9aa5a2;font-style:italic;margin-top:6px;font-weight:400;text-transform:none;letter-spacing:0;}
-  .mp-col-next p{font-size:12.5px;color:var(--gray);line-height:1.6;}
-  @media(max-width:1050px){.mp-tier-cols{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:700px){.mp-tier-cols{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:480px){.mp-tier-cols{grid-template-columns:1fr;}.mp-tier-head{flex-direction:column;}.mp-tier-cta{align-items:flex-start;}}
+  .mp-tier-cta .btn{white-space:nowrap;font-size:14.5px;padding:14px 26px;}
+
+  .mp-tier-img{margin:-36px -38px 26px;height:190px;overflow:hidden;border-radius:15px 15px 0 0;position:relative;}
+  .mp-tier-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .mp-tier-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,35,26,0)45%,rgba(10,35,26,0.55));}
+  .mp-tier-img-cap{position:absolute;left:20px;bottom:14px;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.02em;text-shadow:0 2px 6px rgba(0,0,0,0.4);}
+  @media(max-width:920px){.mp-tier-img{margin:-28px -26px 22px;height:160px;}}
+
+  .mp-tier-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:28px;}
+  .mp-col h5{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--dark-green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;font-weight:800;}
+  .mp-col h5 svg{flex-shrink:0;color:var(--tier-accent,var(--lime));}
+  .mp-col ul{margin:0;padding-left:16px;}
+  .mp-col li{font-size:13.5px;color:var(--gray);line-height:1.75;margin-bottom:5px;}
+  .mp-col-note{display:block;font-size:11px;color:#9aa5a2;font-style:italic;margin-top:8px;font-weight:400;text-transform:none;letter-spacing:0;}
+  .mp-col-next{background:#f4f8f2;border-radius:12px;padding:14px 16px;}
+  .mp-col-next p{font-size:13px;color:var(--gray);line-height:1.65;}
+
+  .sc-help-band{background:var(--blue-light);border:1px solid #d6e6f5;border-radius:18px;padding:32px 36px;margin-top:20px;}
+
+  @media(max-width:1300px){.mp-tier-cols{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:920px){.mp-tier-cols{grid-template-columns:repeat(2,1fr);}.mp-tier-row{padding:28px 26px;}}
+  @media(max-width:560px){.mp-tier-cols{grid-template-columns:1fr;}.mp-tier-head{flex-direction:column;}.mp-tier-cta{align-items:flex-start;width:100%;}.mp-tier-cta .btn{width:100%;justify-content:center;}}
 </style>
 </head>
 <body>
@@ -50,18 +73,17 @@
       <a href="https://wa.me/917397789803" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.29-1.39c1.44.79 3.06 1.2 4.7 1.2 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.06c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.17-1.55-1.17-2.96s.73-2.1 1-2.39c.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.6-.14.24.09 1.53.72 1.79.85.26.14.43.2.5.31.06.12.06.68-.18 1.36z"/></svg> WhatsApp Support</a>
     </div>
     <div class="top-bar-social">
-      <a href="https://facebook.com/IGOAgriTechfarms/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-      <a href="https://instagram.com/igoagritechfarms/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
-      <a href="https://linkedin.com/company/igo-agritechfarms/" target="_blank" rel="noopener" aria-label="LinkedIn">li</a>
-      <a href="https://youtube.com/@IGOAgriTechfarms" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+      <a href="https://facebook.com/IGOAgriTechfarms/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.6-.1-1.4-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.3H7.5v3h2.7v7h3.3z"/></svg></a>
+      <a href="https://instagram.com/igoagritechfarms/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://linkedin.com/company/igo-agritechfarms/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8H3.6V20h2.9V8.8zM5 7.4a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4zM20.4 13.9c0-3.2-1.7-4.7-4-4.7-1.8 0-2.6 1-3.1 1.7V8.8h-2.9V20h2.9v-5.6c0-1.5.3-2.9 2.1-2.9 1.8 0 2.1 1.7 2.1 3V20h2.9v-6.1z"/></svg></a>
+      <a href="https://youtube.com/@IGOAgriTechfarms" target="_blank" rel="noopener" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.2V8.8L15.5 12 10 15.2z"/></svg></a>
     </div>
   </div>
 </div>
 <header id="siteHeader">
   <div class="container nav-wrap">
     <a href="index.html" class="logo">
-      <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 22 C 33 4, 4 14, 10 40 C 15 60, 34 66, 50 80 Z" fill="#4CAF50"/><path d="M50 22 C 67 4, 92 16, 84 42 C 79 60, 62 66, 50 80 Z" fill="#1B6E4C"/><path d="M50 22 L50 80" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/><circle cx="70" cy="60" r="6.5" fill="#1B6E4C"/><circle cx="80" cy="68" r="4.5" fill="#1B6E4C"/><circle cx="75" cy="77" r="3" fill="#1B6E4C"/></svg></span>
-      <span class="logo-text"><span class="logo-igo">IGO</span><span class="logo-pharma">Pharma</span></span>
+      <span class="logo-img-badge"><img src="img/igo-pharma-logo.png" alt="IGO Pharma" class="logo-img"></span>
     </a>
     <button class="icon-btn" id="searchToggle" title="Search" aria-label="Search this site"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></button>
     <nav class="main-nav">
@@ -71,10 +93,11 @@
           <a href="index.html#categories" class="drop-toggle">Shop <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
           <div class="nav-dropdown">
             <a href="shop.html"><strong>All Products</strong></a>
-            <a href="shop-pesticides.html">Crop Protection &amp; Pesticides</a>
-            <a href="shop-seeds.html">Seeds &amp; Fertilizers</a>
-            <a href="shop-equipment.html">Farm Equipment &amp; Sprayers</a>
-            <a href="shop-veterinary.html">Veterinary Supplies</a>
+            <a href="shop-seeds.html">Seeds</a>
+            <a href="shop-fertilizers.html">Fertilizers</a>
+            <a href="shop-equipment.html">Equipment</a>
+            <a href="shop-pesticides.html">Crop Protection</a>
+            <a href="shop-veterinary.html">Veterinary</a>
           </div>
         </li>
         <li class="has-drop">
@@ -87,6 +110,7 @@
             <a href="service-storage-warehousing.html">Storage &amp; Warehousing</a>
             <a href="service-market-linkage.html">Market Linkage</a>
             <a href="service-export-import.html">Export Import</a>
+            <a href="service-pest-disease.html">Pest &amp; Disease Guidance</a>
             <a href="dealer.html">Agri Entrepreneurship</a>
           </div>
         </li>
@@ -118,8 +142,8 @@
             <a href="membership.html#merchant">Merchant Farmer</a>
             <a href="membership.html">Compare Tiers</a>
           </div>
-        </li><li><a href="dealer.html">Franchise</a></li>
-        <li><a href="about.html">About</a></li>
+        </li><li><a href="wellness.html">Wellness</a></li><li><a href="dealer.html">Franchise</a></li>
+        
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
@@ -137,10 +161,11 @@
       <li class="has-drop-m"><button type="button" class="drop-toggle-m">Shop <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="sub-list">
           <a href="shop.html"><strong>All Products</strong></a>
-          <a href="shop-pesticides.html">Crop Protection &amp; Pesticides</a>
-          <a href="shop-seeds.html">Seeds &amp; Fertilizers</a>
-          <a href="shop-equipment.html">Farm Equipment &amp; Sprayers</a>
-          <a href="shop-veterinary.html">Veterinary Supplies</a>
+          <a href="shop-seeds.html">Seeds</a>
+          <a href="shop-fertilizers.html">Fertilizers</a>
+          <a href="shop-equipment.html">Equipment</a>
+          <a href="shop-pesticides.html">Crop Protection</a>
+          <a href="shop-veterinary.html">Veterinary</a>
         </div>
       </li>
       <li class="has-drop-m"><button type="button" class="drop-toggle-m">Services <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -152,6 +177,7 @@
           <a href="service-storage-warehousing.html">Storage &amp; Warehousing</a>
           <a href="service-market-linkage.html">Market Linkage</a>
           <a href="service-export-import.html">Export Import</a>
+          <a href="service-pest-disease.html">Pest &amp; Disease Guidance</a>
           <a href="dealer.html">Agri Entrepreneurship</a>
         </div>
       </li>
@@ -179,8 +205,8 @@
           <a href="membership.html#entrepreneur">Entrepreneur Farmer</a>
           <a href="membership.html#merchant">Merchant Farmer</a>
         </div>
-      </li><li><a href="dealer.html">Franchise</a></li>
-      <li><a href="about.html">About</a></li>
+      </li><li><a href="wellness.html">Wellness</a></li><li><a href="dealer.html">Franchise</a></li>
+      
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </div>
@@ -210,12 +236,18 @@
   <div class="sc-container">
 
     <div class="mp-tier-row" id="classic">
+      <div class="mp-tier-img">
+        <img src="img/real-agri-farming.webp" alt="Small traditional farmer working the field by hand" loading="lazy" onerror="this.onerror=null;this.src='img/real-agri-farming.webp';">
+        <span class="mp-tier-img-cap">Traditional, hands-on farming</span>
+      </div>
       <div class="mp-tier-head">
         <div class="mp-tier-head-l">
-          <div class="mp-tier-id">TIER 01</div>
+          <div class="mp-tier-num">01</div>
+          <div>
           <div class="mp-tier-tag">Traditional / Small Farmer</div>
           <h3>Classic Farmer</h3>
           <p>0.5–2 hectare land, traditional farming methods, limited technology adoption.</p>
+          </div>
         </div>
         <div class="mp-tier-cta">
           <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Classic%20Farmer%20tier." class="btn btn-primary" target="_blank" rel="noopener">Ask About This Tier</a>
@@ -223,36 +255,42 @@
       </div>
       <div class="mp-tier-cols">
         <div class="mp-col">
-          <h5>Farmer Profile</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Farmer Profile</h5>
           <ul><li>0.5–2 hectare land</li><li>Traditional farming methods</li><li>Limited mechanization/tech use</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Govt. Schemes to Know</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 19v-6M15 19v-6"/><path d="M3 19h18"/></svg>Govt. Schemes to Know</h5>
           <ul><li>PM-KISAN income support</li><li>PMFBY crop insurance</li><li>Soil Health Card Scheme</li><li>State input subsidy schemes</li></ul>
           <span class="mp-col-note">Informational only — IGO Pharmacy doesn't administer these.</span>
         </div>
         <div class="mp-col">
-          <h5>IGO Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>IGO Support</h5>
           <ul><li>Basic crop advisory over WhatsApp/phone</li><li>Help reading your Soil Health Card</li><li>Low-cost input kits sized to small plots</li><li>Seasonal sowing/spraying reminders</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Growth Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Growth Support</h5>
           <ul><li>Village-level demo visits (case-by-case)</li><li>Local-language WhatsApp advisory</li><li>Nearby sourcing convenience</li></ul>
         </div>
         <div class="mp-col mp-col-next">
-          <h5>Next Step</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Next Step</h5>
           <p>Move up to Modern Farmer as you adopt drip irrigation, better seed varieties, or start selling surplus beyond your village.</p>
         </div>
       </div>
     </div>
 
     <div class="mp-tier-row" id="modern">
+      <div class="mp-tier-img">
+        <img src="img/hero_bg_farm_landscape_1783401436598.webp" alt="Modern farm using efficient irrigation practices" loading="lazy" onerror="this.onerror=null;this.src='img/real-agri-farming.webp';">
+        <span class="mp-tier-img-cap">Drip irrigation, better inputs</span>
+      </div>
       <div class="mp-tier-head">
         <div class="mp-tier-head-l">
-          <div class="mp-tier-id">TIER 02</div>
+          <div class="mp-tier-num">02</div>
+          <div>
           <div class="mp-tier-tag">Progressive / Semi-Tech Farmer</div>
           <h3>Modern Farmer</h3>
           <p>2–5 hectare land, uses drip irrigation or improved seed varieties, market-oriented.</p>
+          </div>
         </div>
         <div class="mp-tier-cta">
           <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Modern%20Farmer%20tier." class="btn btn-primary" target="_blank" rel="noopener">Ask About This Tier</a>
@@ -260,36 +298,43 @@
       </div>
       <div class="mp-tier-cols">
         <div class="mp-col">
-          <h5>Farmer Profile</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Farmer Profile</h5>
           <ul><li>2–5 hectare land</li><li>Uses drip/improved seed varieties</li><li>Market-oriented, sells surplus</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Govt. Schemes to Know</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 19v-6M15 19v-6"/><path d="M3 19h18"/></svg>Govt. Schemes to Know</h5>
           <ul><li>PMKSY (micro-irrigation subsidy)</li><li>Mechanization subsidy schemes</li><li>PKVY organic farming subsidy</li><li>PM-KUSUM solar pump scheme</li></ul>
           <span class="mp-col-note">Informational only — IGO Pharmacy doesn't administer these.</span>
         </div>
         <div class="mp-col">
-          <h5>IGO Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>IGO Support</h5>
           <ul><li>Season-long input sequencing advisory</li><li>Product recommendations for yield goals</li><li>Weather-linked spraying pointers</li><li>Priority WhatsApp response</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Growth Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Growth Support</h5>
           <ul><li>Nearby mandi/buyer awareness pointers</li><li>Basic grading tips for better sale price</li><li>Help exploring FPO membership</li></ul>
         </div>
         <div class="mp-col mp-col-next">
-          <h5>Next Step</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Next Step</h5>
           <p>Move up to Innovative Farmer as you scale toward cluster farming, cold storage, or export-quality produce.</p>
         </div>
       </div>
     </div>
 
     <div class="mp-tier-row mp-tier-hi" id="innovative">
+      <span class="mp-tier-ribbon">Most Popular</span>
+      <div class="mp-tier-img">
+        <img src="img/category_equipment_tractor_1783401493658.webp" alt="Mechanized, tech-forward farming" loading="lazy" onerror="this.onerror=null;this.src='img/real-agri-farming.webp';">
+        <span class="mp-tier-img-cap">Mechanized, export-ready farming</span>
+      </div>
       <div class="mp-tier-head">
         <div class="mp-tier-head-l">
-          <div class="mp-tier-id">TIER 03</div>
+          <div class="mp-tier-num">03</div>
+          <div>
           <div class="mp-tier-tag">Tech + High-Value Farming</div>
           <h3>Innovative Farmer</h3>
           <p>5–10 hectare or farmer cluster, early tech adopter, export/processing focus.</p>
+          </div>
         </div>
         <div class="mp-tier-cta">
           <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Innovative%20Farmer%20tier." class="btn btn-primary" target="_blank" rel="noopener">Ask About This Tier</a>
@@ -297,37 +342,43 @@
       </div>
       <div class="mp-tier-cols">
         <div class="mp-col">
-          <h5>Farmer Profile</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Farmer Profile</h5>
           <ul><li>5–10 hectare / cluster</li><li>Smart farming adopter</li><li>Export/processing focus</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Govt. Schemes to Know</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 19v-6M15 19v-6"/><path d="M3 19h18"/></svg>Govt. Schemes to Know</h5>
           <ul><li>Agriculture Infrastructure Fund</li><li>Cold storage subsidy schemes</li><li>APEDA export awareness</li><li>State precision-farming grants</li></ul>
           <span class="mp-col-note">Informational only — IGO Pharmacy doesn't administer these.</span>
         </div>
         <div class="mp-col">
-          <h5>IGO Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>IGO Support</h5>
           <ul><li>Post-harvest handling guidance</li><li>Storage &amp; warehousing signposting</li><li>Export-readiness awareness (IEC/APEDA basics)</li><li>Equipment rental enquiry routing</li></ul>
           <span class="mp-col-note">We don't operate our own warehouse or trading house.</span>
         </div>
         <div class="mp-col">
-          <h5>Growth Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Growth Support</h5>
           <ul><li>Positioning tips for premium produce</li><li>B2B buyer-awareness pointers</li><li>Basic traceability guidance</li></ul>
         </div>
         <div class="mp-col mp-col-next">
-          <h5>Next Step</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Next Step</h5>
           <p>Move up to Entrepreneur Farmer if you're ready to build a processing unit or your own dealer/franchise business.</p>
         </div>
       </div>
     </div>
 
     <div class="mp-tier-row" id="entrepreneur">
+      <div class="mp-tier-img">
+        <img src="img/real-storage-warehouse.jpg" alt="Storage and processing facility for agri businesses" loading="lazy" onerror="this.onerror=null;this.src='img/real-packhouse.webp';">
+        <span class="mp-tier-img-cap">Processing &amp; a second income stream</span>
+      </div>
       <div class="mp-tier-head">
         <div class="mp-tier-head-l">
-          <div class="mp-tier-id">TIER 04</div>
+          <div class="mp-tier-num">04</div>
+          <div>
           <div class="mp-tier-tag">Farmer + Business Owner</div>
           <h3>Entrepreneur Farmer</h3>
           <p>Business-minded, farming-plus-processing focus, ready for a second income stream.</p>
+          </div>
         </div>
         <div class="mp-tier-cta">
           <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Entrepreneur%20Farmer%20tier." class="btn btn-primary" target="_blank" rel="noopener">Ask About This Tier</a>
@@ -335,36 +386,42 @@
       </div>
       <div class="mp-tier-cols">
         <div class="mp-col">
-          <h5>Farmer Profile</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Farmer Profile</h5>
           <ul><li>Business mindset</li><li>Processing / storage / services focus</li><li>Ready to invest in a second income stream</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Govt. Schemes to Know</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 19v-6M15 19v-6"/><path d="M3 19h18"/></svg>Govt. Schemes to Know</h5>
           <ul><li>MSME / Udyam registration</li><li>Startup India (agri-tech ventures)</li><li>Agriculture Infrastructure Fund</li><li>Credit Guarantee schemes</li></ul>
           <span class="mp-col-note">Informational only — IGO Pharmacy doesn't administer these.</span>
         </div>
         <div class="mp-col">
-          <h5>IGO Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>IGO Support</h5>
           <ul><li>Business-planning conversation with our team</li><li>Dealer/franchise partnership pathway</li><li>Bulk sourcing support</li><li>Direct point of contact, no ticket queue</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Growth Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Growth Support</h5>
           <ul><li>Packaging/branding basics</li><li>B2B and retail customer-mix guidance</li><li>Introductions where relevant</li></ul>
         </div>
         <div class="mp-col mp-col-next">
-          <h5>Next Step</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Next Step</h5>
           <p>Apply to become an <a href="dealer.html">IGO Pharmacy Dealer</a> — see the full franchise application.</p>
         </div>
       </div>
     </div>
 
     <div class="mp-tier-row" id="merchant">
+      <div class="mp-tier-img">
+        <img src="img/real-packhouse.webp" alt="Packhouse operations for traders and aggregators" loading="lazy" onerror="this.onerror=null;this.src='img/real-agri-farming.webp';">
+        <span class="mp-tier-img-cap">Wholesale &amp; mandi trading</span>
+      </div>
       <div class="mp-tier-head">
         <div class="mp-tier-head-l">
-          <div class="mp-tier-id">TIER 05</div>
+          <div class="mp-tier-num">05</div>
+          <div>
           <div class="mp-tier-tag">Trader / Aggregator / Buyer</div>
           <h3>Merchant Farmer</h3>
           <p>Trader, wholesaler, or aggregator working across multiple farms and villages.</p>
+          </div>
         </div>
         <div class="mp-tier-cta">
           <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Merchant%20Farmer%20tier." class="btn btn-primary" target="_blank" rel="noopener">Ask About This Tier</a>
@@ -372,24 +429,24 @@
       </div>
       <div class="mp-tier-cols">
         <div class="mp-col">
-          <h5>Farmer Profile</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Farmer Profile</h5>
           <ul><li>Trader / wholesaler</li><li>Aggregation across villages</li><li>Market-price aware</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Govt. Schemes to Know</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M19 10v9M9 19v-6M15 19v-6"/><path d="M3 19h18"/></svg>Govt. Schemes to Know</h5>
           <ul><li>WDRA warehouse registration info</li><li>Trade infrastructure schemes</li><li>Export-import (IEC) awareness</li></ul>
           <span class="mp-col-note">Informational only — IGO Pharmacy doesn't administer these.</span>
         </div>
         <div class="mp-col">
-          <h5>IGO Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>IGO Support</h5>
           <ul><li>Bulk/wholesale sourcing enquiries</li><li>Supply-chain coordination conversations</li><li>Priority account contact</li></ul>
         </div>
         <div class="mp-col">
-          <h5>Growth Support</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Growth Support</h5>
           <ul><li>Market-intelligence pointers (Agmarknet, e-NAM)</li><li>Digital record-keeping tips</li><li>Buyer-network introductions where relevant</li></ul>
         </div>
         <div class="mp-col mp-col-next">
-          <h5>Next Step</h5>
+          <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Next Step</h5>
           <p>Talk to our team about a standing wholesale/bulk supply arrangement.</p>
         </div>
       </div>
@@ -403,7 +460,6 @@
       <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%27d%20like%20to%20know%20which%20membership%20tier%20fits%20my%20farm." class="btn btn-primary" target="_blank" rel="noopener">Ask Us on WhatsApp</a>
     </div>
 
-    <div class="note-box" style="margin-top:24px;">These tiers describe the level of advisory and support you receive from IGO Pharmacy — they are not paid subscriptions and carry no membership fee. Government scheme names are real central/state programs listed for general awareness; IGO Pharmacy does not administer, guarantee eligibility for, or process applications for any of them.</div>
   </div>
 </section>
 
@@ -412,15 +468,14 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="color:var(--white);margin-bottom:14px;">
-          <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 22 C 33 4, 4 14, 10 40 C 15 60, 34 66, 50 80 Z" fill="#4CAF50"/><path d="M50 22 C 67 4, 92 16, 84 42 C 79 60, 62 66, 50 80 Z" fill="#1B6E4C"/><path d="M50 22 L50 80" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/><circle cx="70" cy="60" r="6.5" fill="#1B6E4C"/><circle cx="80" cy="68" r="4.5" fill="#1B6E4C"/><circle cx="75" cy="77" r="3" fill="#1B6E4C"/></svg></span>
-          <span class="logo-text"><span class="logo-igo" style="color:var(--white);">IGO</span><span class="logo-pharma" style="color:var(--white);">Pharma</span></span>
+          <span class="logo-img-badge"><img src="img/igo-pharma-logo.png" alt="IGO Pharma" class="logo-img"></span>
         </div>
         <p>Genuine agri-inputs — pesticides, seeds, fertilizers, farm equipment &amp; veterinary supplies — powered by IGO Precision Farming Pvt. Ltd.</p>
         <div class="social-row">
-          <a href="https://facebook.com/IGOAgriTechfarms/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-          <a href="https://instagram.com/igoagritechfarms/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
-          <a href="https://linkedin.com/company/igo-agritechfarms/" target="_blank" rel="noopener" aria-label="LinkedIn">li</a>
-          <a href="https://youtube.com/@IGOAgriTechfarms" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+          <a href="https://facebook.com/IGOAgriTechfarms/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.6-.1-1.4-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.3H7.5v3h2.7v7h3.3z"/></svg></a>
+          <a href="https://instagram.com/igoagritechfarms/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://linkedin.com/company/igo-agritechfarms/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8H3.6V20h2.9V8.8zM5 7.4a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4zM20.4 13.9c0-3.2-1.7-4.7-4-4.7-1.8 0-2.6 1-3.1 1.7V8.8h-2.9V20h2.9v-5.6c0-1.5.3-2.9 2.1-2.9 1.8 0 2.1 1.7 2.1 3V20h2.9v-6.1z"/></svg></a>
+          <a href="https://youtube.com/@IGOAgriTechfarms" target="_blank" rel="noopener" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.2V8.8L15.5 12 10 15.2z"/></svg></a>
         </div>
       </div>
       <div>
@@ -428,7 +483,7 @@
         <ul>
           <li><a href="index.html#categories">Products</a></li>
           <li><a href="index.html#solutions">Crop &amp; Problem</a></li>
-          <li><a href="about.html">About</a></li>
+          
           <li><a href="index.html#services">Services</a></li>
           <li><a href="for-farmers.html">For Farmers</a></li>
           <li><a href="index.html#quality">Quality</a></li>
@@ -449,22 +504,30 @@
         <h4>Contact</h4>
         <ul>
           <li>No 17, Kovalan Street, 2nd Main Road, Uthandi Kanathur, Chennai 600119</li>
-          <li><a href="tel:+917397789803">+91 73977 89803</a></li>
+          <li><a href="tel:+917397789803">+91 73977 89803</a> &middot; <a href="tel:+917397789804">89804</a> &middot; <a href="tel:+917397789805">89805</a></li>
+          <li><a href="mailto:bd2@igogroups.com">bd2@igogroups.com</a></li>
           <li><a href="mailto:precisionfarming152@gmail.com">precisionfarming152@gmail.com</a></li>
+          <li style="padding-top:6px;"><strong style="color:#fff;font-size:12.5px;">IGO Group Brands</strong></li>
+          <li><a href="https://www.igoagritechfarms.in/" target="_blank" rel="noopener">IGO Agritech Farms</a> &middot; <a href="https://igocropcare.com/" target="_blank" rel="noopener">CropCare</a></li>
+          <li><a href="https://famersfactory.com/" target="_blank" rel="noopener">Farmers Factory</a> &middot; <a href="https://igoproteincuts.com/" target="_blank" rel="noopener">Protein Cuts</a></li>
+          <li><a href="https://igonursery.com/" target="_blank" rel="noopener">IGO Nursery</a> &middot; <a href="https://igoacademy.in/" target="_blank" rel="noopener">IGO Academy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 IGO Pharmacy. All Rights Reserved. Powered by IGO Precision Farming Pvt. Ltd.</span>
-      <span><a href="privacy.html" style="text-decoration:underline;">Privacy Policy</a> &middot; <a href="terms.html" style="text-decoration:underline;">Terms of Use</a> &middot; <a href="grievance-redressal.html" style="text-decoration:underline;">Grievance Redressal</a> &middot; <a href="refund-policy.html" style="text-decoration:underline;">Refund Policy</a> &middot; <a href="shipping-policy.html" style="text-decoration:underline;">Shipping Policy</a> <em>(template — have a lawyer review before relying on these)</em></span>
+      <span>&copy; 2026 IGO Pharmacy &mdash; an IGO Group of Companies brand. Powered by IGO Precision Farming Pvt. Ltd. <span class="site-v">SITE v5</span></span>
+      <span><a href="privacy.html" style="text-decoration:underline;">Privacy Policy</a> &middot; <a href="terms.html" style="text-decoration:underline;">Terms of Use</a> &middot; <a href="grievance-redressal.html" style="text-decoration:underline;">Grievance Redressal</a> &middot; <a href="refund-policy.html" style="text-decoration:underline;">Refund Policy</a> &middot; <a href="shipping-policy.html" style="text-decoration:underline;">Shipping Policy</a></span>
     </div>
     <div class="footer-bottom" style="border-top:none;padding-top:0;">
       <span>Stock imagery courtesy of Wikimedia Commons contributors (and USDA/public domain sources), used under their respective open licenses — replace with your own brand photography when available.</span>
     </div>
   </div>
 </footer>
-<script src="js/cart.js?v=20260709b"></script>
-<script src="js/products.js?v=20260709b"></script>
-<script src="js/main.js?v=20260709b"></script>
+<script src="js/cart.js?v=20260713c"></script>
+<script src="js/products.js?v=20260713c"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/main.js?v=20260713c"></script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                               

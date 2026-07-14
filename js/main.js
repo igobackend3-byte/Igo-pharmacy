@@ -1,14 +1,12 @@
 // IGO Pharmacy — site interactions (static site, no backend)
 // v2 rebuild: catalog-aware search + WhatsApp form handoff
 
-// FAQ accordion
 function toggleFaq(el){
   const item = el.parentElement;
   document.querySelectorAll('.faq-item').forEach(i=>{ if(i!==item) i.classList.remove('open'); });
   item.classList.toggle('open');
 }
 
-// Prefill enquiry from crop/problem chips
 function prefillEnquiry(topic){
   const msg = document.getElementById('enquiryMessage');
   if(msg) msg.value = 'I need help with: ' + topic;
@@ -16,8 +14,6 @@ function prefillEnquiry(topic){
   if(section) section.scrollIntoView({behavior:'smooth'});
 }
 
-// Form handlers — no backend needed: enquiries hand off to WhatsApp
-// with the form contents pre-filled, so every submission reaches a human.
 const IGO_WA_NUMBER = '917397789803';
 
 function handleSubmit(e){
@@ -30,6 +26,14 @@ function handleSubmit(e){
       || el.name || el.placeholder || el.id || 'Field';
     lines.push(label.trim() + ': ' + el.value.trim());
   });
+  // Save to Firestore too, when Firebase is connected (js/firebase-config.js)
+  if(window.IGO_DB){
+    const data = {};
+    form.querySelectorAll('input, select, textarea').forEach(el=>{
+      if(el.value && el.type !== 'submit') data[el.name || el.id || 'field'] = el.value.trim();
+    });
+    window.IGO_DB.saveLead(data);
+  }
   window.open('https://wa.me/' + IGO_WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   let note = form.querySelector('.form-status');
   if(!note){
@@ -45,12 +49,12 @@ function handleNewsletter(e){
   e.preventDefault();
   const form = e.target;
   const email = (form.querySelector('input[type="email"], input') || {}).value || '';
+  if(window.IGO_DB) window.IGO_DB.saveLead({type:'newsletter', email: email});
   window.open('https://wa.me/' + IGO_WA_NUMBER + '?text=' + encodeURIComponent(
     'Hi IGO Pharmacy, please add me to your crop-care tips & offers list. Email: ' + email), '_blank', 'noopener');
   return false;
 }
 
-// Chip tabs: Shop by Crop / Shop by Problem
 function initChipTabs(){
   const tabs = document.querySelectorAll('.chip-tab');
   tabs.forEach(tab=>{
@@ -64,8 +68,6 @@ function initChipTabs(){
   });
 }
 
-// Unified shop page: click a category tab to filter the product grid
-// (legacy static grids only — the dynamic shop page is handled by js/shop.js)
 function initShopFilter(){
   if(document.getElementById('shopGridDyn')) return;
   const tabs = document.querySelectorAll('.shop-filter-tab');
@@ -95,7 +97,6 @@ function initShopFilter(){
   applyFilter(initial ? initial.dataset.filter : 'all');
 }
 
-// Mobile nav toggle
 function initMobileNav(){
   const menuToggle = document.getElementById('menuToggle');
   const mobileNav = document.getElementById('mobileNav');
@@ -106,7 +107,6 @@ function initMobileNav(){
   mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileNav.classList.remove('open')));
 }
 
-// Sitewide search: product catalog first, then on-page content, then site links.
 function initSearch(){
   const toggle = document.getElementById('searchToggle');
   const panel = document.getElementById('searchPanel');
@@ -126,12 +126,10 @@ function initSearch(){
     if(msg) msg.textContent = '';
     if(!q) return;
 
-    // 1) Product catalog (sitewide): if any product matches, go straight to the shop
     const catalog = window.IGO_PRODUCTS || [];
     const prodHits = catalog.filter(p => (p.name + ' ' + p.catLabel + ' ' + p.cat).toLowerCase().includes(q));
     if(prodHits.length){
       if(document.getElementById('shopGridDyn')){
-        // already on the shop page — filter in place
         const shopSearch = document.getElementById('shopSearch');
         if(shopSearch){
           shopSearch.value = q;
@@ -145,7 +143,6 @@ function initSearch(){
       return;
     }
 
-    // 2) Real on-page items: category cards, service cards, crop/pest/disease/animal chips
     const items = Array.from(document.querySelectorAll('#categories .cat-card, #services .service-card, .chip'));
     const hit = items.find(el => el.textContent.toLowerCase().includes(q));
 
@@ -164,7 +161,6 @@ function initSearch(){
       return;
     }
 
-    // 3) Real pages/links: nav dropdown items and blog articles
     const linkItems = Array.from(document.querySelectorAll('nav.main-nav .nav-dropdown a, .blog-card'));
     const linkHit = linkItems.find(el => el.textContent.toLowerCase().includes(q));
     if(linkHit && linkHit.getAttribute('href')){
@@ -176,7 +172,6 @@ function initSearch(){
   });
 }
 
-// Mobile nav dropdown accordions (Shop / Services / About / For Farmers)
 function initMobileNavDropdowns(){
   const toggles = document.querySelectorAll('.mobile-nav .drop-toggle-m');
   toggles.forEach(btn=>{
@@ -187,7 +182,6 @@ function initMobileNavDropdowns(){
   });
 }
 
-// Header shadow on scroll
 function initHeaderScroll(){
   const header = document.getElementById('siteHeader');
   if(!header) return;
@@ -196,7 +190,6 @@ function initHeaderScroll(){
   });
 }
 
-// Reveal on scroll
 function initReveal(){
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{
@@ -210,7 +203,6 @@ function initReveal(){
   revealEls.forEach(el=>io.observe(el));
 }
 
-// Animated stat counters
 function initCounters(){
   const counters = document.querySelectorAll('.count');
   const cio = new IntersectionObserver((entries)=>{

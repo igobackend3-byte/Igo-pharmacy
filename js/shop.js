@@ -4,10 +4,13 @@
    live search, category filter, sorting and a
    "Trending" strip on the homepage. Static-site
    friendly: no backend, works from file:// too.
+   When Firebase is connected (js/firebase.js), the
+   catalog is replaced live via IGO_SHOP_REFRESH.
    ============================================ */
 (function(){
   'use strict';
   var P = window.IGO_PRODUCTS || [];
+  var _apply = null; // set by initShopPage; used by IGO_SHOP_REFRESH
   var LABELS = window.IGO_CAT_LABELS || {};
   var WA = '917397789803';
   var FALLBACK = {
@@ -98,6 +101,7 @@
     if (searchEl) searchEl.addEventListener('input', function(){ state.q = searchEl.value; apply(); });
     if (sortEl) sortEl.addEventListener('change', function(){ state.sort = sortEl.value; apply(); });
     apply();
+    _apply = apply;
   }
 
   /* ---------- Homepage trending strip ---------- */
@@ -113,4 +117,11 @@
     initShopPage();
     initTrending();
   });
+
+  // Called by js/firebase.js after live products load from Firestore
+  window.IGO_SHOP_REFRESH = function(){
+    P = window.IGO_PRODUCTS || [];
+    if (_apply) _apply();
+    initTrending();
+  };
 })();

@@ -1,0 +1,10 @@
+{
+  "name": "igo-pharmacy",
+  "version": "3.0.0",
+  "description": "IGO Pharmacy — agri-input retail website of the IGO Group of Companies. Static site with Firebase-ready data layer.",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "private": true
+}
