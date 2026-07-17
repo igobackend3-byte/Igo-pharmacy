@@ -31,29 +31,38 @@
   }
 
   function cardHTML(p){
-    var fb = FALLBACK[p.cat] || FALLBACK.seeds;
+    var fb = p.img || 'img/igo-organic-pharmacy-brand.jpg';
+    var saving = p.mrp && p.price ? Math.round(((p.mrp - p.price) / p.mrp) * 100) : 0;
     var badge = '';
-    if (p.hot) badge = '<span class="prod-badge">Best Seller</span>';
-    else if (p.off) badge = '<span class="prod-badge sale">Save ' + p.off + '%</span>';
-    else if (p.mode === 'enquire') badge = '<span class="prod-badge enq">Bulk / B2B</span>';
+    if (p.available === false) badge = '<span class="prod-badge" style="background:#888;">Out of Stock</span>';
+    else if (saving > 0) badge = '<span class="prod-badge">Save ' + saving + '%</span>';
+    else if (p.brand) badge = '<span class="prod-badge" style="background:#1b4d3e;">' + esc(p.brand) + '</span>';
 
-    var priceRow, action;
-    if (p.mode === 'cart'){
-      priceRow = '<div class="prod-price-row"><span class="prod-price">' + inr(p.price) + '</span>'
-        + (p.mrp ? '<span class="prod-mrp">' + inr(p.mrp) + '</span>' : '')
-        + (p.off ? '<span class="prod-save">' + p.off + '% off</span>' : '') + '</div>';
-      action = '<button type="button" data-add-to-cart data-id="' + esc(p.id) + '" data-name="' + esc(p.name)
-        + '" data-price="' + p.price + '"' + (p.mrp ? ' data-mrp="' + p.mrp + '"' : '')
-        + ' data-img="' + esc(p.img) + '" data-category="' + esc(p.catLabel) + '">Add to Cart</button>';
-    } else {
-      priceRow = '<div class="prod-price-row"><span class="prod-price enquire">Price on request</span></div>';
-      action = '<a class="prod-enquire-btn" href="' + waEnquireLink(p.name) + '" target="_blank" rel="noopener">Get Quote on WhatsApp</a>';
+    var priceRow = '';
+    if (p.price) {
+      priceRow = '<div class="prod-price-section"><span class="prod-price">₹' + Number(p.price).toLocaleString('en-IN') + '</span>'
+        + (p.mrp ? '<span class="prod-mrp">₹' + Number(p.mrp).toLocaleString('en-IN') + '</span>' : '') + '</div>';
+    }
+    
+    var action = '<div class="prod-actions">' +
+      '<a href="product.html?id=' + encodeURIComponent(p.id) + '" class="btn btn-outline">View Details</a>' +
+      '<button type="button" data-add-to-cart data-id="' + esc(p.id) + '" data-name="' + esc(p.name)
+        + '" data-price="' + (p.price || 0) + '"' + (p.mrp ? ' data-mrp="' + p.mrp + '"' : '')
+        + ' data-img="' + esc(p.img) + '" data-category="' + esc(p.catLabel || p.cat) + '" class="btn btn-primary">Add Cart</button>' +
+      '</div>';
+    
+    var brandLine = p.brand ? '<div class="prod-brand" style="font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:2px;">' + esc(p.brand) + '</div>' : '';
+    var ratingLine = '';
+    if (window.IGO_REVIEWS){
+      var rs = window.IGO_REVIEWS.summary(p.id);
+      ratingLine = '<div style="font-size:11.5px;color:var(--gray);margin-bottom:4px;">' + window.IGO_REVIEWS.starsHTML(rs.rating, 11) + ' ' + rs.rating + ' (' + rs.count + ')</div>';
     }
     return '<div class="prod-card" data-shopcat="' + p.cat + '">'
       + '<div class="prod-img-wrap">' + badge
-      + '<img src="' + esc(p.img) + '" onerror="this.onerror=null;this.src=\'' + fb + '\';" alt="' + esc(p.name) + ' pack" loading="lazy" decoding="async"></div>'
-      + '<div class="prod-body"><div class="prod-cat">' + esc(LABELS[p.cat] || p.catLabel) + '</div>'
-      + '<h4>' + esc(p.name) + '</h4>' + priceRow + action + '</div></div>';
+      + '<img src="' + esc(p.img) + '" onerror="this.onerror=null;this.src=\'img/igo-organic-pharmacy-brand.jpg\';" alt="' + esc(p.name) + '" loading="lazy" decoding="async"></div>'
+      + '<div class="prod-info">' + brandLine + '<h3 class="prod-name">' + esc(p.name) + '</h3>' + ratingLine
+      + '<p class="prod-desc">' + esc(p.brief || p.catLabel) + '</p>'
+      + priceRow + action + '</div></div>';
   }
 
   /* ---------- Full shop page ---------- */
@@ -66,21 +75,39 @@
     var emptyEl = document.getElementById('shopEmpty');
     var tabs = document.querySelectorAll('.shop-filter-tab');
 
-    var state = { cat:'all', q:'', sort:'featured' };
+    var brandTabs = document.querySelectorAll('.shop-brand-tab');
+    var concernEl = document.getElementById('shopConcern');
+    var state = { cat:'all', q:'', sort:'featured', brand:'all', concern:'all' };
 
-    // read ?q= and ?cat= from URL (used by sitewide search)
+    // populate concern dropdown from catalog
+    if (concernEl){
+      var concerns = [];
+      P.forEach(function(p){ if (p.concern && concerns.indexOf(p.concern) === -1) concerns.push(p.concern); });
+      concerns.sort().forEach(function(c){
+        var o = document.createElement('option'); o.value = c; o.textContent = c;
+        concernEl.appendChild(o);
+      });
+      concernEl.addEventListener('change', function(){ state.concern = concernEl.value; apply(); });
+    }
+
+    // read ?q=, ?cat= and ?brand= from URL (used by sitewide search)
     try {
       var usp = new URLSearchParams(window.location.search);
       if (usp.get('q'))  { state.q = usp.get('q'); if (searchEl) searchEl.value = state.q; }
       if (usp.get('cat')){ state.cat = usp.get('cat'); }
+      if (usp.get('brand')){ state.brand = usp.get('brand'); }
+      if (usp.get('concern')){ state.concern = usp.get('concern'); if (concernEl) concernEl.value = state.concern; }
+      if (window.location.hash && window.location.hash.length > 1) { state.cat = window.location.hash.slice(1); }
     } catch(e){}
 
     function apply(){
       var q = state.q.trim().toLowerCase();
       var items = P.filter(function(p){
         var okCat = state.cat === 'all' || p.cat === state.cat;
-        var okQ = !q || (p.name + ' ' + p.catLabel + ' ' + p.cat).toLowerCase().indexOf(q) !== -1;
-        return okCat && okQ;
+        var okBrand = state.brand === 'all' || (p.brand || '') === state.brand;
+        var okConcern = state.concern === 'all' || (p.concern || '') === state.concern;
+        var okQ = !q || (p.name + ' ' + p.catLabel + ' ' + p.cat + ' ' + (p.brand||'') + ' ' + (p.concern||'') + ' ' + (p.brief||'')).toLowerCase().indexOf(q) !== -1;
+        return okCat && okBrand && okConcern && okQ;
       });
       switch (state.sort){
         case 'price-asc':  items.sort(function(a,b){ return (a.price||1e9) - (b.price||1e9); }); break;
@@ -93,10 +120,19 @@
       if (countEl) countEl.textContent = items.length + ' product' + (items.length === 1 ? '' : 's');
       if (emptyEl) emptyEl.style.display = items.length ? 'none' : 'block';
       tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.filter === state.cat); });
+      brandTabs.forEach(function(t){ t.classList.toggle('active', t.dataset.brand === state.brand); });
     }
 
     tabs.forEach(function(t){
       t.addEventListener('click', function(){ state.cat = t.dataset.filter; apply(); });
+    });
+    brandTabs.forEach(function(t){
+      t.addEventListener('click', function(){ state.brand = t.dataset.brand; apply(); });
+    });
+    // category tiles double as filters
+    document.querySelectorAll('.shop-cat-tile[data-filter]').forEach(function(t){
+      t.addEventListener('click', function(){ state.cat = t.dataset.filter; apply();
+        var g = document.getElementById('shopGridDyn'); if (g) g.scrollIntoView({behavior:'smooth'}); });
     });
     if (searchEl) searchEl.addEventListener('input', function(){ state.q = searchEl.value; apply(); });
     if (sortEl) sortEl.addEventListener('change', function(){ state.sort = sortEl.value; apply(); });

@@ -52,6 +52,13 @@
               createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
           }catch(e){ return Promise.resolve(); }
+        },
+        saveFullOrder: function(order){
+          try{
+            return db.collection('orders').doc(order.id).set(Object.assign({}, order, {
+              savedAt: firebase.firestore.FieldValue.serverTimestamp()
+            }));
+          }catch(e){ return Promise.resolve(); }
         }
       };
 
@@ -73,11 +80,4 @@
             pack: d.pack || null,
             off: (d.price && d.mrp) ? Math.round((1 - d.price / d.mrp) * 100) : 0,
             hot: !!d.hot
-          });
-        });
-        window.IGO_PRODUCTS = live;
-        if (window.IGO_SHOP_REFRESH) window.IGO_SHOP_REFRESH();
-      }).catch(function(){ /* offline / rules — stay on static catalog */ });
-    })
-    .catch(function(){ /* SDK failed to load — stay on static catalog */ });
-})();
+       

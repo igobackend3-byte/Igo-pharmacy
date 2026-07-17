@@ -16,35 +16,35 @@
 <style>
   .sc-section{padding:56px 0;}
   .sc-container{max-width:1100px;margin:0 auto;padding:0 24px;}
-  .sc-hero{position:relative;background:linear-gradient(120deg,#5c2d7a,#8a4fae);color:var(--white);overflow:hidden;padding:60px 0 66px;}
+  .sc-hero{position:relative;background:linear-gradient(120deg,#0f2e21,#1b4d3e);color:var(--white);overflow:hidden;padding:60px 0 66px;}
   .sc-hero::before{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='white' stroke-width='1.4'%3E%3Cpath d='M20 90c0-30 15-50 40-58'/%3E%3Cpath d='M20 90c10-4 18-12 20-24'/%3E%3Cpath d='M100 30c0 30-15 50-40 58'/%3E%3Cpath d='M100 30c-10 4-18 12-20 24'/%3E%3C/g%3E%3C/svg%3E");
     background-size:220px 220px;}
   .sc-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.14),transparent 70%);pointer-events:none;}
   .sc-hero .sc-container{position:relative;z-index:1;}
   .sc-hero h1{font-size:clamp(26px,3.4vw,38px);margin:14px 0 12px;line-height:1.15;}
-  .sc-hero p{color:#ecdcf5;font-size:15px;max-width:640px;}
-  .sc-crumb{font-size:12.5px;color:#ecdcf5;margin-bottom:6px;}
-  .sc-crumb a{color:#ecdcf5;text-decoration:underline;}
+  .sc-hero p{color:#cfe6da;font-size:15px;max-width:640px;}
+  .sc-crumb{font-size:12.5px;color:#cfe6da;margin-bottom:6px;}
+  .sc-crumb a{color:#cfe6da;text-decoration:underline;}
   .well-upcoming{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 16px;border-radius:99px;font-size:12.5px;font-weight:800;background:rgba(255,255,255,0.16);letter-spacing:.03em;}
   .well-hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
   .well-hero-badges span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);padding:7px 14px;border-radius:99px;font-size:12px;font-weight:700;color:#fff;}
   .well-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:44px;align-items:center;margin-top:8px;}
-  .well-visual{position:relative;border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;background:linear-gradient(150deg,#f6effa,#eee0f5);border:1px solid #e3cdf0;}
+  .well-visual{position:relative;border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;background:linear-gradient(150deg,#eef7e6,#e8f3da);border:1px solid #d8ecc0;}
   .well-visual svg{display:block;width:100%;height:auto;}
-  .well-visual-tag{position:absolute;top:14px;left:14px;background:rgba(92,45,122,0.92);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:999px;}
+  .well-visual-tag{position:absolute;top:14px;left:14px;background:rgba(15,46,33,0.92);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:999px;}
   @media(max-width:860px){.well-grid{grid-template-columns:1fr;}}
   .well-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;}
   .well-stat{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;box-shadow:var(--shadow);}
-  .well-stat svg{color:#5c2d7a;margin-bottom:8px;}
-  .well-stat strong{display:block;font-size:20px;color:#5c2d7a;}
+  .well-stat svg{color:#0f2e21;margin-bottom:8px;}
+  .well-stat strong{display:block;font-size:20px;color:#0f2e21;}
   .well-stat span{font-size:12px;color:var(--gray);}
   @media(max-width:760px){.well-stats{grid-template-columns:repeat(2,1fr);}}
   .well-offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px;}
   .well-offer{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease;}
   .well-offer:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-  .well-offer .well-offer-icon{width:42px;height:42px;border-radius:12px;background:#f6effa;display:flex;align-items:center;justify-content:center;color:#5c2d7a;margin-bottom:12px;}
-  .well-offer h4{color:#5c2d7a;font-size:15px;margin-bottom:6px;}
+  .well-offer .well-offer-icon{width:42px;height:42px;border-radius:12px;background:#eef7e6;display:flex;align-items:center;justify-content:center;color:#0f2e21;margin-bottom:12px;}
+  .well-offer h4{color:#0f2e21;font-size:15px;margin-bottom:6px;}
   .well-offer p{color:var(--gray);font-size:13px;line-height:1.6;}
   @media(max-width:900px){.well-offer-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.well-offer-grid{grid-template-columns:1fr;}}
@@ -54,10 +54,10 @@
   @media(max-width:860px){.well-source{grid-template-columns:1fr;}.well-source-copy{padding:4px 24px 28px;}}
   .well-timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px;counter-reset:step;}
   .well-step{position:relative;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 18px;box-shadow:var(--shadow);}
-  .well-step .well-step-num{width:30px;height:30px;border-radius:50%;background:#5c2d7a;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .well-step .well-step-num{width:30px;height:30px;border-radius:50%;background:#0f2e21;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
   .well-step h4{font-size:14px;color:var(--dark-green);margin-bottom:6px;}
   .well-step p{font-size:12.5px;color:var(--gray);line-height:1.6;}
-  .well-step.is-active{border-color:#c99fdf;background:#faf5fd;}
+  .well-step.is-active{border-color:#8bc400;background:#f5faec;}
   @media(max-width:900px){.well-timeline{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.well-timeline{grid-template-columns:1fr;}}
   .sc-cross{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;}
@@ -91,66 +91,31 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li class="has-drop">
-          <a href="index.html#categories" class="drop-toggle">Shop <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
+          <a href="shop.html" class="drop-toggle">Shop <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
           <div class="nav-dropdown">
             <a href="shop.html"><strong>All Products</strong></a>
-            <a href="shop-seeds.html">Seeds</a>
-            <a href="shop-fertilizers.html">Fertilizers</a>
-            <a href="shop-equipment.html">Equipment</a>
-            <a href="shop-pesticides.html">Crop Protection</a>
-            <a href="shop-veterinary.html">Veterinary</a>
-          </div>
-        </li>
-        <li class="has-drop">
-          <a href="index.html#services" class="drop-toggle">Services <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-          <div class="nav-dropdown">
-            <a href="service-input-supply.html">Agri Inputs Supply</a>
-            <a href="service-farm-advisory.html">Farmer Advisory</a>
-            <a href="service-soil-testing.html">Soil Testing</a>
-            <a href="service-equipment-rental.html">Equipment Rental</a>
-            <a href="service-storage-warehousing.html">Storage &amp; Warehousing</a>
-            <a href="service-market-linkage.html">Market Linkage</a>
-            <a href="service-export-import.html">Export Import</a>
-            <a href="service-pest-disease.html">Pest &amp; Disease Guidance</a>
-            <a href="dealer.html">Agri Entrepreneurship</a>
+            <a href="shop.html#churnam">Churnam &amp; Powders</a>
+            <a href="shop.html#kashayam">Kashayam &amp; Rasayanam</a>
+            <a href="shop.html#thailam">Thailam &amp; Oils</a>
+            <a href="shop.html#tablets">Tablets &amp; Capsules</a>
+            <a href="shop.html#personal">Personal &amp; Skin Care</a>
           </div>
         </li>
         <li class="has-drop">
           <a href="about.html" class="drop-toggle">About <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
           <div class="nav-dropdown">
             <a href="about.html">About Us</a>
-            <a href="index.html#why">Why Choose IGO</a>
-            <a href="index.html#quality">Quality &amp; Standards</a>
-            <a href="index.html#testimonials">What Farmers Say</a>
+            <a href="wellness.html">Our Roadmap to Launch</a>
+            <a href="index.html#quality">Quality &amp; Sourcing</a>
           </div>
         </li>
-        <li class="has-drop">
-          <a href="for-farmers.html" class="drop-toggle">For Farmers <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-          <div class="nav-dropdown">
-            <a href="for-farmers.html">For Farmers Hub</a>
-            <a href="index.html#solutions">Shop by Crop &amp; Problem</a>
-            <a href="index.html#blog">Blog &amp; Farming Guides</a>
-            <a href="index.html#faq">FAQs</a>
-          </div>
-        </li>
-        <li class="has-drop">
-          <a href="membership.html" class="drop-toggle">Membership <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></a>
-          <div class="nav-dropdown">
-            <a href="membership.html#classic">Classic Farmer</a>
-            <a href="membership.html#modern">Modern Farmer</a>
-            <a href="membership.html#innovative">Innovative Farmer</a>
-            <a href="membership.html#entrepreneur">Entrepreneur Farmer</a>
-            <a href="membership.html#merchant">Merchant Farmer</a>
-            <a href="membership.html">Compare Tiers</a>
-          </div>
-        </li><li><a href="wellness.html">Wellness</a></li><li><a href="dealer.html">Franchise</a></li>
-
+        <li><a href="service-consultation.html">Consultation</a></li>
+        <li><a href="dealer.html">Become a Stockist</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
     <div class="header-cta">
       <a href="cart.html" class="icon-btn cart-icon-wrap" title="View Cart" aria-label="Cart"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a>
-      <a href="dealer.html" class="btn btn-primary btn-partner-header">Become a Partner</a>
       <a href="tel:+917397789803" class="icon-btn" title="Call Now" aria-label="Call"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
       <a class="btn btn-dark" href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20I%20have%20a%20product%20enquiry." target="_blank" rel="noopener">WhatsApp <span class="hide-mobile">Us</span></a>
     </div>
@@ -162,52 +127,22 @@
       <li class="has-drop-m"><button type="button" class="drop-toggle-m">Shop <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="sub-list">
           <a href="shop.html"><strong>All Products</strong></a>
-          <a href="shop-seeds.html">Seeds</a>
-          <a href="shop-fertilizers.html">Fertilizers</a>
-          <a href="shop-equipment.html">Equipment</a>
-          <a href="shop-pesticides.html">Crop Protection</a>
-          <a href="shop-veterinary.html">Veterinary</a>
-        </div>
-      </li>
-      <li class="has-drop-m"><button type="button" class="drop-toggle-m">Services <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="sub-list">
-          <a href="service-input-supply.html">Agri Inputs Supply</a>
-          <a href="service-farm-advisory.html">Farmer Advisory</a>
-          <a href="service-soil-testing.html">Soil Testing</a>
-          <a href="service-equipment-rental.html">Equipment Rental</a>
-          <a href="service-storage-warehousing.html">Storage &amp; Warehousing</a>
-          <a href="service-market-linkage.html">Market Linkage</a>
-          <a href="service-export-import.html">Export Import</a>
-          <a href="service-pest-disease.html">Pest &amp; Disease Guidance</a>
-          <a href="dealer.html">Agri Entrepreneurship</a>
+          <a href="shop.html#churnam">Churnam &amp; Powders</a>
+          <a href="shop.html#kashayam">Kashayam &amp; Rasayanam</a>
+          <a href="shop.html#thailam">Thailam &amp; Oils</a>
+          <a href="shop.html#tablets">Tablets &amp; Capsules</a>
+          <a href="shop.html#personal">Personal &amp; Skin Care</a>
         </div>
       </li>
       <li class="has-drop-m"><button type="button" class="drop-toggle-m">About <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="sub-list">
           <a href="about.html">About Us</a>
-          <a href="index.html#why">Why Choose IGO</a>
-          <a href="index.html#quality">Quality &amp; Standards</a>
-          <a href="index.html#testimonials">What Farmers Say</a>
+          <a href="wellness.html">Our Roadmap to Launch</a>
+          <a href="index.html#quality">Quality &amp; Sourcing</a>
         </div>
       </li>
-      <li class="has-drop-m"><button type="button" class="drop-toggle-m">For Farmers <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="sub-list">
-          <a href="for-farmers.html">For Farmers Hub</a>
-          <a href="index.html#solutions">Shop by Crop &amp; Problem</a>
-          <a href="index.html#blog">Blog &amp; Farming Guides</a>
-          <a href="index.html#faq">FAQs</a>
-        </div>
-      </li>
-      <li class="has-drop-m"><button type="button" class="drop-toggle-m">Membership <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
-        <div class="sub-list">
-          <a href="membership.html#classic">Classic Farmer</a>
-          <a href="membership.html#modern">Modern Farmer</a>
-          <a href="membership.html#innovative">Innovative Farmer</a>
-          <a href="membership.html#entrepreneur">Entrepreneur Farmer</a>
-          <a href="membership.html#merchant">Merchant Farmer</a>
-        </div>
-      </li><li><a href="wellness.html">Wellness</a></li><li><a href="dealer.html">Franchise</a></li>
-
+      <li><a href="service-consultation.html">Consultation</a></li>
+      <li><a href="dealer.html">Become a Stockist</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </div>
@@ -227,9 +162,9 @@
 <section class="sc-hero">
   <div class="sc-container">
     <div class="sc-crumb"><a href="index.html">Home</a> / Wellness</div>
-    <div class="eyebrow" style="background:rgba(255,255,255,0.14);color:#ecdcf5;">Health &amp; Wellness</div>
+    <div class="eyebrow" style="background:rgba(255,255,255,0.14);color:#cfe6da;">Health &amp; Wellness</div>
     <h1>IGO Organic Pharmacy — Siddha &amp; Ayurveda Wellness</h1>
-    <p>Certified Siddha, Ayurveda and herbal medicine produced from organically grown medicinal plants — a separate wellness brand within the IGO Group, distinct from our agri-input storefront.</p>
+    <p>Certified Siddha, Ayurveda and herbal medicine produced from organically grown medicinal plants — our roadmap to launch, from formulation research through to pan-India rollout.</p>
     <span class="well-upcoming">🌿 Upcoming — Not Yet Launched</span>
     <div class="well-hero-badges">
       <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> GMP-Certified Facility</span>
@@ -243,21 +178,21 @@
   <div class="sc-container">
     <div class="well-grid">
       <div>
-        <h2 style="color:#5c2d7a;font-size:clamp(20px,2.6vw,26px);margin-bottom:14px;">About IGO Organic Pharmacy</h2>
+        <h2 style="color:#0f2e21;font-size:clamp(20px,2.6vw,26px);margin-bottom:14px;">About IGO Organic Pharmacy</h2>
         <p style="color:var(--gray);font-size:14.5px;line-height:1.8;">IGO Organic Pharmacy will offer certified Siddha, Ayurveda and herbal medicine products produced entirely from organically grown medicinal plants. Rooted in India's traditional medicine systems, all formulations will be manufactured under GMP-certified processes and distributed through the IGO Group's retail network.</p>
-        <p style="color:var(--gray);font-size:14.5px;line-height:1.8;margin-top:10px;">This is a distinct brand from IGO Pharmacy's agri-input storefront (pesticides, seeds, fertilizers, equipment) — presented here because both operate under the IGO Group umbrella, giving visitors one place to learn about it ahead of launch.</p>
+        <p style="color:var(--gray);font-size:14.5px;line-height:1.8;margin-top:10px;">This page is our honest, in-progress roadmap — see exactly where each stage stands today, and message us on WhatsApp to be notified the moment we launch.</p>
       </div>
       <div class="well-visual">
         <span class="well-visual-tag">Concept Visual</span>
         <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of Siddha and Ayurveda herbal medicine bottles, a mortar and pestle, and medicinal herbs">
           <defs>
             <linearGradient id="wellBg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f6effa"/>
-              <stop offset="1" stop-color="#e9d6f2"/>
+              <stop offset="0" stop-color="#eef7e6"/>
+              <stop offset="1" stop-color="#dcefc8"/>
             </linearGradient>
             <linearGradient id="bottleG" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#8a4fae"/>
-              <stop offset="1" stop-color="#5c2d7a"/>
+              <stop offset="0" stop-color="#1b4d3e"/>
+              <stop offset="1" stop-color="#0f2e21"/>
             </linearGradient>
             <linearGradient id="bottleG2" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#8bc400"/>
@@ -274,21 +209,21 @@
           </g>
           <!-- mortar and pestle -->
           <g transform="translate(60,210)">
-            <ellipse cx="80" cy="115" rx="90" ry="16" fill="#5c2d7a" opacity=".15"/>
-            <path d="M10 70 C10 120 40 150 80 150 C120 150 150 120 150 70 Z" fill="#e9d6f2" stroke="#5c2d7a" stroke-width="4"/>
-            <ellipse cx="80" cy="70" rx="70" ry="18" fill="#f6effa" stroke="#5c2d7a" stroke-width="4"/>
+            <ellipse cx="80" cy="115" rx="90" ry="16" fill="#0f2e21" opacity=".15"/>
+            <path d="M10 70 C10 120 40 150 80 150 C120 150 150 120 150 70 Z" fill="#dcefc8" stroke="#0f2e21" stroke-width="4"/>
+            <ellipse cx="80" cy="70" rx="70" ry="18" fill="#eef7e6" stroke="#0f2e21" stroke-width="4"/>
             <ellipse cx="80" cy="70" rx="52" ry="11" fill="#7fae3a"/>
             <circle cx="60" cy="66" r="7" fill="#4f7a24"/>
             <circle cx="90" cy="72" r="6" fill="#4f7a24"/>
             <circle cx="105" cy="64" r="5" fill="#4f7a24"/>
-            <rect x="105" y="-6" width="16" height="80" rx="8" fill="#5c2d7a" transform="rotate(18 113 34)"/>
+            <rect x="105" y="-6" width="16" height="80" rx="8" fill="#0f2e21" transform="rotate(18 113 34)"/>
           </g>
           <!-- herbal bottles -->
           <g transform="translate(255,150)">
             <rect x="0" y="30" width="64" height="130" rx="10" fill="url(#bottleG)"/>
-            <rect x="16" y="6" width="32" height="30" rx="6" fill="#3d1f52"/>
+            <rect x="16" y="6" width="32" height="30" rx="6" fill="#123320"/>
             <rect x="10" y="70" width="44" height="46" rx="4" fill="#ffffff" opacity=".9"/>
-            <path d="M18 90 h28 M18 100 h20" stroke="#5c2d7a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M18 90 h28 M18 100 h20" stroke="#0f2e21" stroke-width="3" stroke-linecap="round"/>
           </g>
           <g transform="translate(335,178)">
             <rect x="0" y="20" width="54" height="108" rx="10" fill="url(#bottleG2)"/>
@@ -298,11 +233,11 @@
           </g>
           <g transform="translate(215,240)">
             <rect x="0" y="10" width="40" height="80" rx="9" fill="#a8e600"/>
-            <rect x="10" y="-6" width="20" height="18" rx="4" fill="#5c2d7a"/>
+            <rect x="10" y="-6" width="20" height="18" rx="4" fill="#0f2e21"/>
             <circle cx="20" cy="50" r="12" fill="#ffffff" opacity=".85"/>
           </g>
           <!-- floating leaf accents -->
-          <g fill="#5c2d7a" opacity=".7">
+          <g fill="#0f2e21" opacity=".7">
             <path d="M400 90c14-10 30-10 40 4-14 6-30 6-40-4z"/>
             <path d="M90 260c14-10 30-10 40 4-14 6-30 6-40-4z"/>
           </g>
@@ -318,7 +253,7 @@
     </div>
 
     <div class="section-head reveal visible" style="margin-top:48px;">
-      <div class="eyebrow" style="color:#5c2d7a;">Roadmap to Launch</div>
+      <div class="eyebrow" style="color:#0f2e21;">Roadmap to Launch</div>
       <h2 style="color:var(--dark-green);font-size:clamp(20px,2.6vw,26px);">Where this vertical stands today.</h2>
       <p style="color:var(--gray);font-size:14px;max-width:640px;">Wellness is a planned addition to the IGO Group ecosystem — here's the honest status of each stage.</p>
     </div>
@@ -329,9 +264,9 @@
       <div class="well-step"><div class="well-step-num">4</div><h4>Pan-India Rollout</h4><p>Phased distribution through the IGO Group network once approved.</p></div>
     </div>
 
-    <div class="sc-help-band" style="background:linear-gradient(120deg,#f4ecfa,#eaddf5);border:1px solid #ddc4ec;border-radius:var(--radius);padding:28px 32px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+    <div class="sc-help-band" style="background:linear-gradient(120deg,#eef7e0,#e2f2d0);border:1px solid #cbe8b0;border-radius:var(--radius);padding:28px 32px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
       <div>
-        <h3 style="color:#5c2d7a;font-size:18px;margin-bottom:4px;">Want to be notified at launch?</h3>
+        <h3 style="color:#0f2e21;font-size:18px;margin-bottom:4px;">Want to be notified at launch?</h3>
         <p style="color:var(--gray);font-size:13.5px;">Message us on WhatsApp and we'll reach out once Wellness products are available.</p>
       </div>
       <a href="https://wa.me/917397789803?text=Hi%20IGO%20Pharmacy%2C%20please%20notify%20me%20when%20Wellness%20products%20launch." class="btn btn-primary" target="_blank" rel="noopener">Notify Me</a>
@@ -346,7 +281,7 @@
         <div class="logo" style="color:var(--white);margin-bottom:14px;">
           <span class="logo-img-badge"><img src="img/igo-pharma-logo.png" alt="IGO Pharma" class="logo-img"></span>
         </div>
-        <p>Genuine agri-inputs — pesticides, seeds, fertilizers, farm equipment &amp; veterinary supplies — powered by IGO Precision Farming Pvt. Ltd.</p>
+        <p>Traditional Siddha &amp; Ayurveda herbal wellness — churnam, kashayam, thailam, tablets &amp; personal care — an IGO Group of Companies brand.</p>
         <div class="social-row">
           <a href="https://facebook.com/IGOAgriTechfarms/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.6-.1-1.4-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.3H7.5v3h2.7v7h3.3z"/></svg></a>
           <a href="https://instagram.com/igoagritechfarms/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
@@ -355,23 +290,23 @@
         </div>
       </div>
       <div>
-        <h4>Explore</h4>
+        <h4>Shop</h4>
         <ul>
-          <li><a href="index.html#categories">Products</a></li>
-          <li><a href="index.html#solutions">Crop &amp; Problem</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="for-farmers.html">For Farmers</a></li>
-          <li><a href="index.html#quality">Quality</a></li>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="shop.html#churnam">Churnam &amp; Powders</a></li>
+          <li><a href="shop.html#kashayam">Kashayam &amp; Rasayanam</a></li>
+          <li><a href="shop.html#thailam">Thailam &amp; Oils</a></li>
+          <li><a href="shop.html#tablets">Tablets &amp; Capsules</a></li>
+          <li><a href="shop.html#personal">Personal &amp; Skin Care</a></li>
         </ul>
       </div>
       <div>
         <h4>Company</h4>
         <ul>
-          <li><a href="index.html#testimonials">Farmer Feedback</a></li>
-          <li><a href="index.html#blog">Blog</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
-          <li><a href="membership.html">Membership</a></li>
-          <li><a href="dealer.html">Become a Dealer</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="wellness.html">Our Roadmap</a></li>
+          <li><a href="service-consultation.html">Consultation</a></li>
+          <li><a href="dealer.html">Become a Stockist</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </div>
@@ -390,15 +325,11 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 IGO Pharmacy &mdash; an IGO Group of Companies brand. Powered by IGO Precision Farming Pvt. Ltd. <span class="site-v">SITE v5</span></span>
+      <span>&copy; 2026 IGO Pharmacy &mdash; an IGO Group of Companies brand. Powered by IGO Precision Farming Pvt. Ltd. <span class="site-v">SITE v6</span></span>
       <span><a href="privacy.html" style="text-decoration:underline;">Privacy Policy</a> &middot; <a href="terms.html" style="text-decoration:underline;">Terms of Use</a> &middot; <a href="grievance-redressal.html" style="text-decoration:underline;">Grievance Redressal</a> &middot; <a href="refund-policy.html" style="text-decoration:underline;">Refund Policy</a> &middot; <a href="shipping-policy.html" style="text-decoration:underline;">Shipping Policy</a></span>
     </div>
   </div>
 </footer>
 <script src="js/cart.js?v=20260713c"></script>
 <script src="js/products.js?v=20260713c"></script>
-<script src="js/firebase-config.js"></script>
-<script src="js/firebase.js"></script>
-<script src="js/main.js?v=20260713c"></script>
-</body>
-</html>
+<a class="wa-float" href="https://wa.me/917397789803?text=Hi%2

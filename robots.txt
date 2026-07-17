@@ -5,6 +5,10 @@ Disallow: /terms.html
 Disallow: /grievance-redressal.html
 Disallow: /refund-policy.html
 Disallow: /shipping-policy.html
+Disallow: /checkout.html
+Disallow: /order-success.html
+Disallow: /orders.html
+Disallow: /cart.html
 
 # AI / answer-engine crawlers — explicitly allowed (see llms.txt for a content summary)
 User-agent: GPTBot
@@ -20,5 +24,4 @@ User-agent: Google-Extended
 Allow: /
 
 # NOTE: this sitemap URL uses a placeholder domain (igopharmacy.in) — update both
-# the domain here and in sitemap.xml/canonical tags once a real domain is chosen.
-Sitemap: https://www.igopharmacy.in/sitemap.xml
+# the domain here and in sitema

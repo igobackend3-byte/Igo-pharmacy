@@ -93,6 +93,16 @@ function initShopFilter(){
     });
   });
 
+  document.querySelectorAll('.shop-cat-tile[data-filter]').forEach(tile=>{
+    tile.addEventListener('click', ()=>{
+      const cat = tile.dataset.filter;
+      const matchTab = document.querySelector('.shop-filter-tab[data-filter="'+cat+'"]');
+      if(matchTab) matchTab.click();
+      const grid = document.getElementById('shopGridDyn');
+      if(grid) grid.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
   const initial = document.querySelector('.shop-filter-tab.active');
   applyFilter(initial ? initial.dataset.filter : 'all');
 }
