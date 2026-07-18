@@ -1,0 +1,1 @@
+This folder holds real product photos. Filename must exactly match the slug used in shop-seeds.html data-img attributes, e.g. urea-45kg.webp, dap-50kg.webp. See CONTENT-CHECKLIST.md for the full list of 29 filenames. Until a matching file is added here, the page automatically falls back to a generic placeholder image (no broken images).

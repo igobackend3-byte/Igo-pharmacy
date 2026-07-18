@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | IGO Pharmacy</title>
+<meta name="description" content="Secure checkout — Cash on Delivery, online payment or WhatsApp order confirmation.">
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="css/style.css?v=20260717">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b4d3e'/%3E%3Ctext x='32' y='30' font-family='Arial,sans-serif' font-size='16' font-weight='800' fill='%23a8e600' text-anchor='middle'%3EIGO%3C/text%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHARMA%3C/text%3E%3C/svg%3E">
+<style>
+  .co-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start;}
+  @media(max-width:900px){.co-grid{grid-template-columns:1fr;}}
+  .co-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .co-card h3{color:var(--dark-green);font-size:17px;margin-bottom:16px;}
+  .co-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .co-form .full{grid-column:1/-1;}
+  .co-form label{display:block;font-size:12.5px;font-weight:700;color:var(--dark-green);margin-bottom:5px;}
+  .co-form input,.co-form textarea,.co-form select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:14px;background:#fff;}
+  .co-form input:focus,.co-form textarea:focus{outline:2px solid var(--green);border-color:transparent;}
+  .co-form .err{border-color:#d4344d;}
+  .co-err-msg{color:#d4344d;font-size:12px;margin-top:3px;display:none;}
+  .pay-opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:.15s;}
+  .pay-opt:hover{border-color:var(--green);}
+  .pay-opt.sel{border-color:var(--dark-green);background:#f4faf1;}
+  .pay-opt input{margin-top:3px;accent-color:#1b4d3e;}
+  .pay-opt .t{font-weight:800;color:var(--dark-green);font-size:14.5px;}
+  .pay-opt .d{font-size:12.5px;color:var(--gray);margin-top:2px;line-height:1.5;}
+  .pay-opt.disabled{opacity:.55;cursor:not-allowed;}
+  .co-sum-row{display:flex;justify-content:space-between;font-size:14px;padding:7px 0;color:var(--gray);}
+  .co-sum-row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:14px;font-size:17px;font-weight:800;color:var(--dark-green);}
+  .co-item{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);}
+  .co-item img{width:44px;height:44px;object-fit:cover;border-radius:8px;background:var(--bg);}
+  .co-item .n{font-size:13px;font-weight:600;color:var(--dark-green);line-height:1.3;}
+  .co-item .q{font-size:12px;color:var(--gray);}
+  .co-item .p{margin-left:auto;font-weight:700;color:var(--dark-green);font-size:13px;white-space:nowrap;}
+  .free-ship-note{background:#eef7e0;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#0f2e21;margin-top:10px;}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <a href="tel:+917397789803">+91 73977 89803</a>
+      <a href="https://wa.me/917397789803" target="_blank" rel="noopener">WhatsApp Support</a>
+    </div>
+  </div>
+</div>
+<header id="siteHeader">
+  <div class="container nav-wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-img-badge"><img src="img/igo-pharma-logo.png" alt="IGO Pharma" class="logo-img"></span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="deals.html">Deals</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a href="cart.html" class="icon-btn cart-icon-wrap" title="View Cart" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="sv-section" style="padding-top:36px;">
+  <div class="container" style="max-width:1150px;">
+    <div class="section-head">
+      <div class="eyebrow">Almost There</div>
+      <h1 style="color:var(--dark-green);font-size:clamp(24px,3vw,32px);font-family:'Poppins',sans-serif;font-weight:700;">Checkout</h1>
+    </div>
+
+    <div class="co-grid" id="checkoutRoot">
+      <div>
+        <div class="co-card" style="margin-bottom:22px;">
+          <h3>Delivery Details</h3>
+          <form id="coForm" class="co-form" novalidate>
+            <div><label for="coName">Full Name *</label><input id="coName" name="name" autocomplete="name" required><div class="co-err-msg">Enter your name</div></div>
+            <div><label for="coPhone">Mobile Number *</label><input id="coPhone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="10" required><div class="co-err-msg">Enter a valid 10-digit mobile number</div></div>
+            <div class="full"><label for="coEmail">Email (for order updates)</label><input id="coEmail" name="email" type="email" autocomplete="email"><div class="co-err-msg">Enter a valid email</div></div>
+            <div class="full"><label for="coAddress">Address (house no., street, area) *</label><textarea id="coAddress" name="address" rows="2" autocomplete="street-address" required></textarea><div class="co-err-msg">Enter your delivery address</div></div>
+            <div><label for="coCity">City *</label><input id="coCity" name="city" autocomplete="address-level2" required><div class="co-err-msg">Enter your city</div></div>
+            <div><label for="coState">State *</label><input id="coState" name="state" autocomplete="address-level1" required><div class="co-err-msg">Enter your state</div></div>
+            <div><label for="coPin">PIN Code *</label><input id="coPin" name="pincode" inputmode="numeric" maxlength="6" required><div class="co-err-msg">Enter a valid 6-digit PIN code</div></div>
+            <div><label for="coNote">Order note (optional)</label><input id="coNote" name="note"></div>
+          </form>
+        </div>
+
+        <div class="co-card">
+          <h3>Payment Method</h3>
+          <div style="display:grid;gap:10px;" id="payOptions">
+            <label class="pay-opt sel" data-pay="cod">
+              <input type="radio" name="pay" value="cod" checked>
+              <span><span class="t">Cash on Delivery</span><br><span class="d">Pay in cash or UPI when your order arrives. Our team calls to confirm before dispatch.</span></span>
+            </label>
+            <label class="pay-opt" data-pay="razorpay" id="optRazorpay">
+              <input type="radio" name="pay" value="razorpay">
+              <span><span class="t">Pay Online (UPI / Card / NetBanking)</span><br><span class="d" id="rzpDesc">Secure payment via Razorpay.</span></span>
+            </label>
+            <label class="pay-opt" data-pay="whatsapp">
+              <input type="radio" name="pay" value="whatsapp">
+              <span><span class="t">Order via WhatsApp</span><br><span class="d">Send your order to our team on WhatsApp — we confirm stock, payment and delivery personally.</span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-card" id="coSummary">
+        <h3>Order Summary</h3>
+        <div id="coItems"></div>
+        <div class="co-sum-row"><span>Subtotal</span><span id="coSubtotal">₹0</span></div>
+        <div class="co-sum-row"><span>Shipping</span><span id="coShipping">—</span></div>
+        <div class="co-sum-row total"><span>Total</span><span id="coTotal">₹0</span></div>
+        <div class="free-ship-note" id="freeShipNote" style="display:none;"></div>
+        <button type="button" id="placeOrderBtn" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;font-size:15px;">Place Order</button>
+        <p id="coError" style="color:#d4344d;font-size:13px;margin-top:10px;display:none;"></p>
+        <p style="font-size:11.5px;color:var(--gray);margin-top:12px;line-height:1.6;">By placing an order you agree to our <a href="terms.html" style="text-decoration:underline;">Terms</a>, <a href="shipping-policy.html" style="text-decoration:underline;">Shipping</a> and <a href="refund-policy.html" style="text-decoration:underline;">Refund</a> policies. Ayurvedic products are not a substitute for medical care — consult a physician for medical conditions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;">
+      <span>&copy; 2026 IGO Pharmacy &mdash; an IGO Group of Companies brand.</span>
+      <span><a href="cart.html" style="text-decoration:underline;">Back to Cart</a></span>
+    </div>
+  </div>
+</footer>
+<script src="js/cart.js?v=20260717"></script>
+<script src="js/payment-config.js?v=20260717"></script>
+<script src="js/firebase-config.js?v=20260717"></script>
+<script src="js/firebase.js?v=20260717"></script>
+<script src="js/checkout.js?v=20260717"></script>
+<script>
+(function(){
+  var money = window.IGO_ORDERS.money;
+
+  function renderSummary(){
+    var items = window.IGO_CART.getCart();
+    if(!items.length){
+      document.getElementById('checkoutRoot').innerHTML =
+        '<div class="co-card" style="grid-column:1/-1;text-align:center;"><p style="margin-bottom:14px;">Your cart is empty.</p><a href="shop.html" class="btn btn-primary">Browse the Shop</a></div>';
+      return false;
+    }
+    document.getElementById('coItems').innerHTML = items.map(function(i){
+      return '<div class="co-item"><img src="'+i.img+'" onerror="this.onerror=null;this.src=\'img/igo-organic-pharmacy-brand.jpg\';" alt="">' +
+        '<div><div class="n">'+i.name+'</div><div class="q">Qty '+i.qty+' × '+money(i.price)+'</div></div>' +
+        '<div class="p">'+money(i.price*i.qty)+'</div></div>';
+    }).join('');
+    var sub = window.IGO_CART.getCartTotal();
+    var ship = window.IGO_ORDERS.shippingFor(sub);
+    document.getElementById('coSubtotal').textContent = money(sub);
+    document.getElementById('coShipping').textContent = ship ? money(ship) : 'FREE';
+    document.getElementById('coTotal').textContent = money(sub + ship);
+    var cfg = window.IGO_SHIPPING || {freeAbove:999};
+    var note = document.getElementById('freeShipNote');
+    if (ship > 0){
+      note.style.display = 'block';
+      note.textContent = 'Add ' + money(cfg.freeAbove - sub) + ' more for FREE shipping.';
+    }
+    return true;
+  }
+
+  if(!renderSummary()) return;
+
+  // Razorpay availability
+  if(!window.IGO_ORDERS.razorpayReady()){
+    var opt = document.getElementById('optRazorpay');
+    opt.classList.add('disabled');
+    opt.querySelector('input').disabled = true;
+    document.getElementById('rzpDesc').textContent = 'Online payment is being set up — please choose COD or WhatsApp for now.';
+  }
+
+  // payment option selection styling
+  document.querySelectorAll('.pay-opt').forEach(function(o){
+    o.addEventListener('click', function(){
+      if(o.classList.contains('disabled')) return;
+      document.querySelectorAll('.pay-opt').forEach(function(x){ x.classList.remove('sel'); });
+      o.classList.add('sel');
+      o.querySelector('input').checked = true;
+    });
+  });
+
+  function validate(){
+    var ok = true;
+    function check(id, test){
+      var el = document.getElementById(id);
+      var good = test(el.value.trim());
+      el.classList.toggle('err', !good);
+      var msg = el.parentElement.querySelector('.co-err-msg');
+      if(msg) msg.style.display = good ? 'none' : 'block';
+      if(!good) ok = false;
+    }
+    check('coName', function(v){ return v.length >= 2; });
+    check('coPhone', function(v){ return /^[6-9]\d{9}$/.test(v); });
+    check('coEmail', function(v){ return !v || /^\S+@\S+\.\S+$/.test(v); });
+    check('coAddress', function(v){ return v.length >= 8; });
+    check('coCity', function(v){ return v.length >= 2; });
+    check('coState', function(v){ return v.length >= 2; });
+    check('coPin', function(v){ return /^\d{6}$/.test(v); });
+    return ok;
+  }
+
+  function customerData(){
+    return {
+      name: document.getElementById('coName').value.trim(),
+      phone: document.getElementById('coPhone').value.trim(),
+      email: document.getElementById('coEmail').value.trim(),
+      address: document.getElementById('coAddress').value.trim(),
+      city: document.getElementById('coCity').value.trim(),
+      state: document.getElementById('coState').value.trim(),
+      pincode: document.getElementById('coPin').value.trim(),
+      note: document.getElementById('coNote').value.trim()
+    };
+  }
+
+  function fail(msg){
+    var el = document.getElementById('coError');
+    el.textContent = msg; el.style.display = 'block';
+    var btn = document.getElementById('placeOrderBtn');
+    btn.disabled = false; btn.textContent = 'Place Order';
+  }
+
+  function complete(order, openWA){
+    window.IGO_CART.clearCart();
+    var url = 'order-success.html?id=' + encodeURIComponent(order.id);
+    if(openWA) url += '&wa=1';
+    window.location.href = url;
+  }
+
+  document.getElementById('placeOrderBtn').addEventListener('click', function(){
+    document.getElementById('coError').style.display = 'none';
+    if(!validate()){ fail('Please fix the highlighted fields above.'); return; }
+    var method = document.querySelector('input[name="pay"]:checked').value;
+    var btn = this;
+    btn.disabled = true; btn.textContent = 'Processing…';
+    var cust = customerData();
+
+    if(method === 'razorpay'){
+      window.IGO_ORDERS.payWithRazorpay(cust,
+        function(order){ complete(order, false); },
+        function(msg){ fail(msg); });
+    } else if(method === 'whatsapp'){
+      var order = window.IGO_ORDERS.createOrder(cust, 'whatsapp', 'pending');
+      complete(order, true);
+    } else {
+      var order2 = window.IGO_ORDERS.createOrder(cust, 'cod', 'pay-on-delivery');
+      complete(order2, false);
+    }
+  });
+})();
+</script>
+</body>
+</html>
