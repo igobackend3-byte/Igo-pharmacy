@@ -1,0 +1,6 @@
+{
+  "name": "IGO Pharma",
+  "description": "IGO Pharma — Kerala Ayurveda stockist and IGO's own Siddha preparations, offering Ayurvedic, Siddha, and Herbal wellness products with AI-guided consultations, an IGO Group of Companies brand.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
