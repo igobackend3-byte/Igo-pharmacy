@@ -327,7 +327,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
                     <button
                       key={condition}
                       onClick={() => {
-                        if (condition === "Hair Care") {
+                        if (["Hair Care", "Detox & Gut Health", "Eye Care", "Women's Health"].includes(condition)) {
                           navigate(`/category/${slugify(condition)}`);
                         } else {
                           navigate(`/shop?search=${encodeURIComponent(condition)}`);
@@ -404,7 +404,14 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
               {HEALTH_CONDITIONS.map(condition => (
                 <button
                   key={condition}
-                  onClick={() => { navigate(`/shop?search=${encodeURIComponent(condition)}`); setMobileMenuOpen(false); }}
+                  onClick={() => {
+                    if (["Hair Care", "Detox & Gut Health", "Eye Care", "Women's Health"].includes(condition)) {
+                      navigate(`/category/${slugify(condition)}`);
+                    } else {
+                      navigate(`/shop?search=${encodeURIComponent(condition)}`);
+                    }
+                    setMobileMenuOpen(false);
+                  }}
                   className="block text-left text-xs font-semibold text-stone-600 bg-stone-50 rounded-lg p-2.5 hover:bg-amber-50"
                 >
                   {condition}

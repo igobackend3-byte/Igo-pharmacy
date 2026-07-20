@@ -29,6 +29,18 @@ const CATEGORY_META: Record<string, { image: string; description: string }> = {
   "Personal & Skin Care": {
     image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200",
     description: "Neem, turmeric, and herbal personal care — gentle traditional formulations for daily skin and body wellness."
+  },
+  "Detox & Gut Health": {
+    image: "/images/gut-health.png",
+    description: "Restore digestive balance and naturally cleanse your system with traditional formulations."
+  },
+  "Eye Care": {
+    image: "/images/skin-amla-capsule.png",
+    description: "Soothe screen strain and support long-term optical health with Vitamin C and antioxidant-rich botanical extracts."
+  },
+  "Women's Health": {
+    image: "/images/skin-chyawanprash.png",
+    description: "Holistic formulations designed to support hormonal balance, recovery, and daily vitality."
   }
 };
 
@@ -41,7 +53,12 @@ export default function CategoryPage() {
   const { slug } = useParams();
   const { products, wishlist, addToCart, toggleWishlist } = useStore();
 
-  const categories = useMemo(() => Array.from(new Set(products.map(p => p.category))), [products]);
+  const categories = useMemo(() => {
+    const list = Array.from(new Set(products.map(p => p.category)));
+    const additional = ["Detox & Gut Health", "Eye Care", "Women's Health"];
+    return [...list, ...additional];
+  }, [products]);
+
   const categoryName = slug ? unslugify(slug, categories) : undefined;
 
   if (!categoryName) {
@@ -49,7 +66,7 @@ export default function CategoryPage() {
   }
 
   const meta = CATEGORY_META[categoryName] || DEFAULT_META;
-  const categoryProducts = products.filter(p => p.category === categoryName);
+  const categoryProducts = products.filter(p => p.category === categoryName || p.healthConcern === categoryName);
 
   return (
     <div className="pb-16">
