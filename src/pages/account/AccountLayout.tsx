@@ -129,7 +129,6 @@ export default function AccountLayout() {
     { to: "/account/addresses", label: "Addresses", icon: ShieldQuestion },
     { to: "/account/orders", label: "Purchase Records", icon: ShoppingBag },
     { to: "/account/subscriptions", label: "Wellness Subscriptions", icon: RefreshCw },
-    { to: "/account/wishlist", label: "Wishlist", icon: Heart },
     { to: "/account/wallet", label: "IGO Wallet & Perks", icon: Wallet },
     { to: "/account/security", label: "Security & Login", icon: Key }
   ];

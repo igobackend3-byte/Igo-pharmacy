@@ -99,15 +99,23 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
     <header className="sticky top-0 z-50 w-full border-b border-amber-100 bg-stone-50/95 shadow-sm backdrop-blur-md">
       {/* Upper bar with micro information */}
       <div className="flex h-9 w-full items-center justify-between bg-emerald-950 px-4 text-xs font-medium text-amber-50 md:px-8">
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck className="h-4.5 w-4.5 text-amber-400" />
-            Kerala Ayurveda Stockist &amp; IGO's Own Siddha Preparations
-          </span>
-          <span className="hidden items-center gap-1.5 sm:flex">
-            <RefreshCw className="h-4 w-4 text-amber-400" />
-            Free Shipping Above ₹999 • COD Available
-          </span>
+        <div className="flex flex-1 items-center overflow-hidden h-full mr-4">
+          <div className="relative flex items-center overflow-hidden w-full h-full">
+            <div className="animate-marquee-scroll flex shrink-0 items-center justify-around gap-12 min-w-full">
+              {[0, 1, 2, 3].map((_, idx) => (
+                <span key={idx} className="mx-4 text-xs font-semibold whitespace-nowrap">
+                  IGO Pharma | Free Delivery on Orders Above ₹999 | Cash on Delivery Available
+                </span>
+              ))}
+            </div>
+            <div className="animate-marquee-scroll flex shrink-0 items-center justify-around gap-12 min-w-full" aria-hidden="true">
+              {[0, 1, 2, 3].map((_, idx) => (
+                <span key={`dup-${idx}`} className="mx-4 text-xs font-semibold whitespace-nowrap">
+                  IGO Pharma | Free Delivery on Orders Above ₹999 | Cash on Delivery Available
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <Link to="/admin" className="hover:text-amber-300 transition-colors cursor-pointer flex items-center gap-1">
@@ -201,7 +209,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
           </button>
 
           <Link
-            to="/account/wishlist"
+            to="/wishlist"
             className="relative p-2.5 text-stone-600 hover:text-emerald-700 transition-colors cursor-pointer"
           >
             <Heart className="h-6 w-6" />
@@ -316,28 +324,25 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
                 className="absolute left-0 top-7 z-50 grid w-[28rem] grid-cols-3 gap-1 rounded-xl border border-stone-200 bg-white p-3 shadow-xl transition-all"
               >
                 {HEALTH_CONDITIONS.map(condition => (
-                  <button
-                    key={condition}
-                    onClick={() => {
-                      navigate(`/shop?search=${encodeURIComponent(condition)}`);
-                      setActiveMegaMenu(null);
-                    }}
-                    className="block w-full rounded-md px-3 py-2 text-left text-xs font-semibold text-stone-600 hover:bg-amber-50 hover:text-amber-950 transition-colors"
-                  >
-                    {condition}
-                  </button>
+                    <button
+                      key={condition}
+                      onClick={() => {
+                        if (condition === "Hair Care") {
+                          navigate(`/category/${slugify(condition)}`);
+                        } else {
+                          navigate(`/shop?search=${encodeURIComponent(condition)}`);
+                        }
+                        setActiveMegaMenu(null);
+                      }}
+                      className="block w-full rounded-md px-3 py-2 text-left text-xs font-semibold text-stone-600 hover:bg-amber-50 hover:text-amber-950 transition-colors"
+                    >
+                      {condition}
+                    </button>
                 ))}
               </div>
             )}
           </div>
 
-          <Link to="/shop" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
-            Shop All
-          </Link>
-
-          <Link to="/brands" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
-            Brands
-          </Link>
 
           <Link to="/consult" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
             Doctor Consultations
@@ -420,12 +425,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
             >
               <FileText className="h-4 w-4 text-emerald-700" /> Ayurvedic Blog &amp; Remedies
             </button>
-            <button
-              onClick={() => { navigate("/brands"); setMobileMenuOpen(false); }}
-              className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
-            >
-              <Award className="h-4 w-4 text-emerald-700" /> Shop by Brand
-            </button>
+
             <button
               onClick={() => { navigate("/wholesale"); setMobileMenuOpen(false); }}
               className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"

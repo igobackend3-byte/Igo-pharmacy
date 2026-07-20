@@ -32,7 +32,7 @@ import AddressesTab from "./pages/account/AddressesTab";
 import OrdersTab from "./pages/account/OrdersTab";
 import OrderDetailPage from "./pages/account/OrderDetailPage";
 import SubscriptionsTab from "./pages/account/SubscriptionsTab";
-import WishlistTab from "./pages/account/WishlistTab";
+import WishlistPage from "./pages/WishlistPage";
 import WalletTab from "./pages/account/WalletTab";
 import SecurityTab from "./pages/account/SecurityTab";
 
@@ -51,6 +51,7 @@ export default function App() {
           <Route path="/category/:slug" element={<CategoryPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/consult" element={<ConsultPage />} />
           <Route path="/knowledge" element={<KnowledgePage />} />
@@ -72,7 +73,6 @@ export default function App() {
             <Route path="orders" element={<OrdersTab />} />
             <Route path="orders/:orderId" element={<OrderDetailPage />} />
             <Route path="subscriptions" element={<SubscriptionsTab />} />
-            <Route path="wishlist" element={<WishlistTab />} />
             <Route path="wallet" element={<WalletTab />} />
             <Route path="security" element={<SecurityTab />} />
           </Route>
