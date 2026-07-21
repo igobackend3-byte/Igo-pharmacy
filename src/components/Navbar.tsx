@@ -88,11 +88,9 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
   // Each links into the shop's text search so results stay relevant even
   // beyond our tagged healthConcern values.
   const HEALTH_CONDITIONS = [
-    "Pain Relief", "Skin Care", "Brain Health", "Hair Care",
-    "Detox & Gut Health", "Women's Health", "Immunity", "Men's Health",
-    "Liver Health", "Eye Care", "Stress Management", "Sleep Support",
-    "Diabetes Care", "Heart Health", "Respiratory Health", "Weight Management",
-    "Joint & Muscle Care"
+    "Pain Relief", "Skin Care", "Hair Care",
+    "Detox & Gut Health", "Women's Health", "Immunity",
+    "Men's Health", "Eye Care", "Diabetes Care"
   ];
 
   return (
@@ -251,8 +249,8 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
 
       {/* Main mega menu strip */}
       <nav className="hidden border-t border-amber-50/50 bg-stone-100 md:block">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-7 gap-y-1.5 px-8 py-3 text-sm font-medium text-stone-700">
-          <Link to="/" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 text-sm font-medium md:px-8">
+          <Link to="/" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Home
           </Link>
 
@@ -260,7 +258,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
           <div className="relative">
             <button
               onMouseEnter={() => setActiveMegaMenu("categories")}
-              className="flex items-center gap-1.5 py-1 text-emerald-800 hover:text-emerald-950 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               Products
               <ChevronDown className="h-4 w-4" />
@@ -313,7 +311,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
           <div className="relative">
             <button
               onMouseEnter={() => setActiveMegaMenu("conditions")}
-              className="flex items-center gap-1.5 py-1 text-emerald-800 hover:text-emerald-950 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               Health Conditions
               <ChevronDown className="h-4 w-4" />
@@ -327,10 +325,11 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
                     <button
                       key={condition}
                       onClick={() => {
-                        if (["Hair Care", "Detox & Gut Health", "Eye Care", "Women's Health"].includes(condition)) {
+                        const categoryConditions = ["Skin Care", "Hair Care", "Detox & Gut Health", "Women's Health", "Eye Care"];
+                        if (categoryConditions.includes(condition)) {
                           navigate(`/category/${slugify(condition)}`);
                         } else {
-                          navigate(`/shop?search=${encodeURIComponent(condition)}`);
+                          navigate(`/shop?concern=${encodeURIComponent(condition)}`);
                         }
                         setActiveMegaMenu(null);
                       }}
@@ -344,23 +343,23 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
           </div>
 
 
-          <Link to="/consult" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
+          <Link to="/consult" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Doctor Consultations
           </Link>
 
-          <Link to="/knowledge" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
+          <Link to="/knowledge" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Blog &amp; Knowledge Center
           </Link>
 
-          <Link to="/wholesale" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
+          <Link to="/wholesale" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Wholesale &amp; Franchising
           </Link>
 
-          <Link to="/about" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
+          <Link to="/about" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             About Us
           </Link>
 
-          <Link to="/contact" className="py-1 hover:text-emerald-700 transition-colors cursor-pointer">
+          <Link to="/contact" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Contact
           </Link>
         </div>
@@ -405,10 +404,11 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
                 <button
                   key={condition}
                   onClick={() => {
-                    if (["Hair Care", "Detox & Gut Health", "Eye Care", "Women's Health"].includes(condition)) {
+                    const categoryConditions = ["Skin Care", "Hair Care", "Detox & Gut Health", "Women's Health", "Eye Care"];
+                    if (categoryConditions.includes(condition)) {
                       navigate(`/category/${slugify(condition)}`);
                     } else {
-                      navigate(`/shop?search=${encodeURIComponent(condition)}`);
+                      navigate(`/shop?concern=${encodeURIComponent(condition)}`);
                     }
                     setMobileMenuOpen(false);
                   }}

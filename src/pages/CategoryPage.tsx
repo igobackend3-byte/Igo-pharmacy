@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { ChevronRight, Leaf } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import { useStore } from "../context/StoreContext";
@@ -26,21 +26,29 @@ const CATEGORY_META: Record<string, { image: string; description: string }> = {
     image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=1200",
     description: "Convenient, clinically standardized tablet and capsule formulations delivering precise, bioavailable doses of adaptogenic herbs like KSM-66 Ashwagandha."
   },
-  "Personal & Skin Care": {
-    image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=1200",
-    description: "Neem, turmeric, and herbal personal care — gentle traditional formulations for daily skin and body wellness."
+  "Hair Care": {
+    image: "/images/category-hair-care.jpg",
+    description: "Nourishing botanical hair oils, powders, and treatments to strengthen roots, restore shine, and support healthy scalp wellness."
+  },
+  "Skin Care": {
+    image: "/images/category-skin-care.jpg",
+    description: "Natural skincare essentials for cleansing, hydrating, and supporting a healthy-looking complexion with pure herbal ingredients."
   },
   "Detox & Gut Health": {
-    image: "/images/gut-health.png",
-    description: "Restore digestive balance and naturally cleanse your system with traditional formulations."
+    image: "/images/category-detox-gut-health.jpg",
+    description: "Restore digestive balance and naturally cleanse your system with traditional formulations rooted in Ayurveda and Siddha."
   },
   "Eye Care": {
-    image: "/images/skin-amla-capsule.png",
-    description: "Soothe screen strain and support long-term optical health with Vitamin C and antioxidant-rich botanical extracts."
+    image: "/images/category-eye-care.jpg",
+    description: "Soothe screen strain and support long-term optical health with antioxidant-rich botanical extracts and natural eye treatments."
   },
   "Women's Health": {
-    image: "/images/skin-chyawanprash.png",
-    description: "Holistic formulations designed to support hormonal balance, recovery, and daily vitality."
+    image: "/images/category-womens-health.jpg",
+    description: "Holistic formulations designed to support hormonal balance, recovery, and daily vitality for women at every stage."
+  },
+  "Immunity": {
+    image: "/images/category-immunity.jpg",
+    description: "Strengthen your body's natural defenses with time-tested immunity-boosting herbs, adaptogens, and Rasayana formulations."
   }
 };
 
@@ -49,24 +57,46 @@ const DEFAULT_META = {
   description: "Certified traditional formulations, vetted by AYUSH physicians and lab-tested for absolute purity."
 };
 
+// The fixed list of primary browsable categories shown as filter chips
+const BROWSE_CATEGORIES = [
+  "Skin Care",
+  "Hair Care",
+  "Detox & Gut Health",
+  "Women's Health",
+  "Immunity",
+  "Eye Care"
+];
+
 export default function CategoryPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const { products, wishlist, addToCart, toggleWishlist } = useStore();
 
-  const categories = useMemo(() => {
-    const list = Array.from(new Set(products.map(p => p.category)));
-    const additional = ["Detox & Gut Health", "Eye Care", "Women's Health"];
-    return [...list, ...additional];
+  // Build full category list from products + our fixed ones
+  const allProductCategories = useMemo(() => {
+    return Array.from(new Set(products.map(p => p.category)));
   }, [products]);
 
-  const categoryName = slug ? unslugify(slug, categories) : undefined;
+  // All known sluggable category names for unslugify lookup
+  const knownCategories = useMemo(() => {
+    return Array.from(new Set([
+      ...allProductCategories,
+      ...BROWSE_CATEGORIES
+    ]));
+  }, [allProductCategories]);
+
+  const categoryName = slug ? unslugify(slug, knownCategories) : undefined;
 
   if (!categoryName) {
     return <Navigate to="/shop" replace />;
   }
 
   const meta = CATEGORY_META[categoryName] || DEFAULT_META;
-  const categoryProducts = products.filter(p => p.category === categoryName || p.healthConcern === categoryName);
+
+  // Filter products: match by category OR healthConcern
+  const categoryProducts = products.filter(p =>
+    p.category === categoryName || p.healthConcern === categoryName
+  );
 
   return (
     <div className="pb-16">
@@ -92,15 +122,16 @@ export default function CategoryPage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 md:px-8 pt-8 space-y-6">
+        {/* Category filter chips */}
         <div className="flex flex-wrap gap-2">
-          {categories.map(cat => (
-            <Link
+          {BROWSE_CATEGORIES.map(cat => (
+            <button
               key={cat}
-              to={`/category/${slugify(cat)}`}
-              className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${cat === categoryName ? 'bg-emerald-800 text-white' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}
+              onClick={() => navigate(`/category/${slugify(cat)}`)}
+              className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all cursor-pointer ${cat === categoryName ? 'bg-emerald-800 text-white' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'}`}
             >
               {cat}
-            </Link>
+            </button>
           ))}
         </div>
 

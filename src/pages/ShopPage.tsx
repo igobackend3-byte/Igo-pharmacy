@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { useStore } from "../context/StoreContext";
@@ -13,6 +13,11 @@ export default function ShopPage() {
   const searchTerm = searchParams.get("search") || "";
   const [selectedSystemFilter, setSelectedSystemFilter] = useState<string>("All");
   const [sortBy, setSortBy] = useState<string>("featured");
+
+  // Scroll to top whenever filter params change so users see filtered results immediately
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeCategory, activeConcern, searchTerm]);
 
   const categories = useMemo(() => ["All", ...Array.from(new Set(products.map(p => p.category)))], [products]);
   const concerns = useMemo(() => ["All", ...Array.from(new Set(products.map(p => p.healthConcern)))], [products]);

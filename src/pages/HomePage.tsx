@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, ShieldCheck, PhoneCall, ArrowRight, PlayCircle } from "lucide-react";
+import { Sparkles, ShieldCheck, PhoneCall, ArrowRight } from "lucide-react";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import { useStore } from "../context/StoreContext";
@@ -14,13 +14,6 @@ interface HomePageProps {
 export default function HomePage({ onOpenAIWellness }: HomePageProps) {
   const navigate = useNavigate();
   const { products, wishlist, addToCart, toggleWishlist } = useStore();
-
-  const concerns = [
-    { name: "Kashayam & Rasayanam", cat: "Kashayam & Rasayanam", image: "https://images.unsplash.com/photo-1512207128881-1b3072c6f6e2?auto=format&fit=crop&q=80&w=350", desc: "Bolster core cellular immunity with wild turmeric & Giloy roots." },
-    { name: "Thailam & Hair Oils", cat: "Thailam & Oils", image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&q=80&w=350", desc: "Reverse premature graying & scalp infections with cold-press Brahmi oils." },
-    { name: "Skin Elixirs & Thailam", cat: "Thailam & Oils", image: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&q=80&w=350", desc: "Enhance facial radiance with organic red saffron & rose extracts." },
-    { name: "Churnam & Powders", cat: "Churnam & Powders", image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=350", desc: "Ease chronic digestion issues with classical tri-herb blends." }
-  ];
 
   return (
     <div className="space-y-16 pb-16">
@@ -48,7 +41,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
           </div>
           <div>
             <h3 className="text-xs font-black uppercase tracking-wider text-stone-800">Acharya Canonical Recipes</h3>
-            <p className="text-xs text-stone-500 leading-normal mt-1 font-light">Vetted and directly sourced based on Charaka Samhita & ancient Siddha Agastya palm leaf formulations for pristine potency.</p>
+            <p className="text-xs text-stone-500 leading-normal mt-1 font-light">Vetted and directly sourced based on Charaka Samhita &amp; ancient Siddha Agastya palm leaf formulations for pristine potency.</p>
           </div>
         </div>
 
@@ -63,48 +56,16 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
         </div>
       </div>
 
-      {/* Interactive Theme Selection / Therapeutic Concerns */}
+      {/* Our Best Products — LEFT ALIGNED */}
       <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
-        <div className="text-center space-y-1.5">
-          <span className="text-[10px] font-black uppercase tracking-widest text-amber-700 font-mono">Curated Collections</span>
-          <h2 className="text-2xl font-black text-emerald-950">Targeted Holistic Care</h2>
-          <p className="text-xs text-stone-500 max-w-md mx-auto leading-normal">Click a traditional concern to instantly browse customized organic dermo-remedies.</p>
+        <div className="space-y-1">
+          <span className="text-[10px] font-black uppercase tracking-widest text-amber-700 font-mono">Premium Formulations</span>
+          <h2 className="text-2xl font-black text-emerald-950">Our Best Products</h2>
+          <p className="text-xs text-stone-500 leading-normal max-w-md">Discover our most trusted and best-selling Ayurvedic remedies.</p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {concerns.map(concern => (
-            <div
-              key={concern.name}
-              onClick={() => navigate(`/category/${slugify(concern.cat)}`)}
-              className="group relative rounded-2xl overflow-hidden aspect-[4/3] border cursor-pointer hover:shadow-md transition-all bg-stone-100"
-            >
-              <img src={concern.image} alt={concern.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 flex flex-col justify-end text-white space-y-1">
-                <h3 className="text-sm font-bold">{concern.name}</h3>
-                <p className="text-[10px] text-stone-300 leading-normal line-clamp-2 font-light">{concern.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bestselling Formulations Grid */}
-      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
-        <div className="flex justify-between items-end border-b pb-4">
-          <div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 font-mono">Bestselling Formulations</span>
-            <h2 className="text-2xl font-black text-emerald-950">Pure Traditional Apothecary</h2>
-          </div>
-          <button
-            onClick={() => navigate("/shop")}
-            className="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
-          >
-            Browse Master Catalog <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.slice(0, 4).map(prod => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {products.filter(p => p.isBestSeller).slice(0, 6).map(prod => (
             <ProductCard
               key={prod.id}
               product={prod}
@@ -112,6 +73,47 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
               onAddToWishlist={toggleWishlist}
               isWishlisted={wishlist.some(item => item.id === prod.id)}
             />
+          ))}
+        </div>
+      </div>
+
+      {/* Shop by Category — LEFT ALIGNED, routes to /category/ */}
+      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
+        <div className="space-y-1">
+          <span className="text-[10px] font-black uppercase tracking-widest text-amber-700 font-mono">Curated Wellness</span>
+          <h2 className="text-2xl font-black text-emerald-950">Shop by Category</h2>
+          <p className="text-xs text-stone-500 leading-normal max-w-md">Discover thoughtfully chosen Ayurvedic essentials for every part of your wellness ritual.</p>
+        </div>
+
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { name: "Skin Care",          image: "/images/category-skin-care.jpg" },
+            { name: "Hair Care",          image: "/images/category-hair-care.jpg" },
+            { name: "Detox & Gut Health", image: "/images/category-detox-gut-health.jpg" },
+            { name: "Women's Health",     image: "/images/category-womens-health.jpg" },
+            { name: "Immunity",           image: "/images/category-immunity.jpg" },
+            { name: "Eye Care",           image: "/images/category-eye-care.jpg" }
+          ].map(category => (
+            <button
+              key={category.name}
+              type="button"
+              onClick={() => navigate(`/category/${slugify(category.name)}`)}
+              className="group relative isolate aspect-[4/3] overflow-hidden rounded-2xl border border-stone-200 bg-emerald-950 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800 cursor-pointer"
+              aria-label={`Explore ${category.name} products`}
+            >
+              <img
+                src={category.image}
+                alt={category.name}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/95 via-emerald-950/45 to-emerald-950/5" />
+              <div className="relative flex h-full flex-col justify-end p-5 text-white">
+                <h3 className="text-xl font-black tracking-tight">{category.name}</h3>
+                <span className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-bold text-amber-200 transition-transform duration-300 group-hover:translate-x-1">
+                  Explore Products <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </button>
           ))}
         </div>
       </div>
@@ -124,7 +126,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
             <h2 className="text-2xl font-black text-emerald-950">Nourishing Botanical Hair Rituals</h2>
           </div>
           <button
-            onClick={() => navigate("/shop?category=Hair+Care")}
+            onClick={() => navigate("/category/hair-care")}
             className="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
           >
             Browse Hair Care <ArrowRight className="h-4 w-4" />
@@ -152,7 +154,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
             <h2 className="text-2xl font-black text-emerald-950">Pure Herbal Skin Rituals</h2>
           </div>
           <button
-            onClick={() => navigate("/shop?category=Skin+Care")}
+            onClick={() => navigate("/category/skin-care")}
             className="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
           >
             Browse Skin Care <ArrowRight className="h-4 w-4" />
@@ -172,7 +174,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
         </div>
       </div>
 
-      {/* Highlight Panel: Interactive AI Ecosystem */}
+      {/* AI Ecosystem panel */}
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="rounded-3xl bg-gradient-to-tr from-emerald-950 to-emerald-850 text-white p-8 md:p-12 grid gap-8 md:grid-cols-2 items-center relative overflow-hidden">
           <div className="absolute top-0 right-0 h-44 w-44 rounded-full bg-amber-400 opacity-10 blur-3xl" />
@@ -208,10 +210,12 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
         </div>
       </div>
 
-      {/* Testimonials */}
-      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6 text-center">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-amber-700 font-mono">Patient Testimonials</span>
-        <h2 className="text-2xl font-black text-stone-900">Vetted By Global Practitioners</h2>
+      {/* Testimonials — LEFT ALIGNED */}
+      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
+        <div className="space-y-1">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-amber-700 font-mono">Patient Testimonials</span>
+          <h2 className="text-2xl font-black text-stone-900">Vetted By Global Practitioners</h2>
+        </div>
 
         <div className="grid gap-6 sm:grid-cols-3">
           {[

@@ -23,16 +23,16 @@ export default function ProductCard({
 
   if (product.isBestSeller) {
     badgeText = "Best Seller";
-    badgeColor = "bg-emerald-650 text-white";
+    badgeColor = "bg-amber-400 text-emerald-950 shadow-md";
   } else if (product.isDoctorRecommended) {
     badgeText = "Doctor Recommended";
-    badgeColor = "bg-amber-500 text-emerald-950";
+    badgeColor = "bg-emerald-700 text-white shadow-md";
   } else if (product.isSeasonal) {
     badgeText = "Seasonal Wellness";
-    badgeColor = "bg-blue-600 text-white";
+    badgeColor = "bg-blue-600 text-white shadow-md";
   } else if (product.isNewArrival) {
     badgeText = "New Arrival";
-    badgeColor = "bg-purple-650 text-white";
+    badgeColor = "bg-purple-600 text-white shadow-md";
   }
 
   return (
@@ -49,12 +49,12 @@ export default function ProductCard({
       {/* Product Image */}
       <Link
         to={`/product/${product.id}`}
-        className="relative overflow-hidden rounded-xl bg-stone-50 cursor-pointer h-48 md:h-52 w-full flex items-center justify-center"
+        className="relative overflow-hidden rounded-xl bg-stone-50 cursor-pointer h-48 md:h-52 w-full flex items-center justify-center p-4"
       >
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
         {badgeText && (
