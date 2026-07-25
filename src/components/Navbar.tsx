@@ -3,7 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   Search, Mic, ShoppingBag, Heart, User, Sparkles, Sliders, Menu, X,
   MapPin, Phone, FileText, ChevronDown, ShieldCheck, RefreshCw,
-  Award, Users, MessageCircle, HelpCircle
+  Award, Users, MessageCircle, HelpCircle,
+  Leaf, ArrowRight, Briefcase
 } from "lucide-react";
 import { useStore } from "../context/StoreContext";
 import { slugify } from "../utils/slug";
@@ -22,6 +23,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
   const [isListening, setIsListening] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<"categories" | "conditions" | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -79,6 +81,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
 
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-amber-100 bg-stone-50/95 shadow-sm backdrop-blur-md">
       {/* Upper bar with micro information */}
       <div className="flex h-9 w-full items-center justify-between bg-emerald-950 px-4 text-xs font-medium text-amber-50 md:px-8">
@@ -213,13 +216,13 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
             )}
           </Link>
 
-          <Link
-            to="/account"
+          <button
+            onClick={() => setShowLoginModal(true)}
             className="p-2.5 text-stone-600 hover:text-emerald-700 transition-colors cursor-pointer flex items-center gap-1"
           >
             <User className="h-6 w-6" />
-            <span className="hidden lg:inline text-xs font-medium text-stone-600">My Account</span>
-          </Link>
+            <span className="hidden lg:inline text-xs font-medium text-stone-600">Login</span>
+          </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -338,12 +341,12 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
             About Us
           </Link>
 
-          <Link to="/contact" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
-            Contact
-          </Link>
-
           <Link to="/faq" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             FAQ
+          </Link>
+
+          <Link to="/contact" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+            Contact
           </Link>
         </div>
       </nav>
@@ -423,20 +426,95 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
               <Users className="h-4 w-4 text-emerald-700" /> About Us
             </button>
             <button
-              onClick={() => { navigate("/contact"); setMobileMenuOpen(false); }}
-              className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
-            >
-              <MessageCircle className="h-4 w-4 text-emerald-700" /> Contact Us
-            </button>
-            <button
               onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }}
               className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
             >
               <HelpCircle className="h-4 w-4 text-emerald-700" /> FAQ
             </button>
+            <button
+              onClick={() => { navigate("/contact"); setMobileMenuOpen(false); }}
+              className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
+            >
+              <MessageCircle className="h-4 w-4 text-emerald-700" /> Contact Us
+            </button>
           </div>
         </div>
       )}
     </header>
+
+      {/* ── Login Selection Modal ─────────────────────────────── */}
+      {showLoginModal && (
+        <div
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4"
+          onClick={() => setShowLoginModal(false)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-emerald-950/60 backdrop-blur-sm" />
+
+          {/* Modal card */}
+          <div
+            className="relative z-10 w-full max-w-md rounded-3xl border border-stone-200 bg-white shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="bg-emerald-950 px-8 py-6 text-center relative">
+              <button
+                onClick={() => setShowLoginModal(false)}
+                className="absolute top-4 right-4 text-emerald-300 hover:text-white transition-colors p-1 cursor-pointer"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <div className="flex justify-center mb-3">
+                <div className="h-14 w-14 rounded-full bg-emerald-800 flex items-center justify-center border-2 border-amber-400">
+                  <Leaf className="h-7 w-7 text-amber-300" />
+                </div>
+              </div>
+              <h2 className="text-xl font-black text-white">Welcome to IGO Pharma</h2>
+              <p className="text-xs text-emerald-300 mt-1">Choose how you'd like to sign in</p>
+            </div>
+
+            {/* Options */}
+            <div className="p-8 space-y-4">
+              {/* Customer Login */}
+              <button
+                onClick={() => { setShowLoginModal(false); navigate('/account'); }}
+                className="group w-full flex items-center gap-5 rounded-2xl border-2 border-stone-200 hover:border-emerald-600 bg-stone-50 hover:bg-emerald-50 p-5 text-left transition-all duration-200 cursor-pointer"
+              >
+                <div className="h-14 w-14 rounded-xl bg-emerald-100 group-hover:bg-emerald-200 flex items-center justify-center shrink-0 transition-colors">
+                  <User className="h-7 w-7 text-emerald-800" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-base font-black text-stone-900">Customer Login</p>
+                  <p className="text-xs text-stone-500 mt-0.5 leading-relaxed">Shop Ayurvedic products, track orders, manage your wellness journey</p>
+                </div>
+                <ArrowRight className="h-5 w-5 text-stone-400 group-hover:text-emerald-700 group-hover:translate-x-1 transition-all" />
+              </button>
+
+              {/* Wholesale Login */}
+              <button
+                onClick={() => { setShowLoginModal(false); navigate('/wholesale'); }}
+                className="group w-full flex items-center gap-5 rounded-2xl border-2 border-stone-200 hover:border-amber-500 bg-stone-50 hover:bg-amber-50 p-5 text-left transition-all duration-200 cursor-pointer"
+              >
+                <div className="h-14 w-14 rounded-xl bg-amber-100 group-hover:bg-amber-200 flex items-center justify-center shrink-0 transition-colors">
+                  <Briefcase className="h-7 w-7 text-amber-800" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-base font-black text-stone-900">Wholesale / Franchise Partner Login</p>
+                  <p className="text-xs text-stone-500 mt-0.5 leading-relaxed">Apply for wholesale, bulk orders & franchise opportunities</p>
+                </div>
+                <ArrowRight className="h-5 w-5 text-stone-400 group-hover:text-amber-700 group-hover:translate-x-1 transition-all" />
+              </button>
+
+              <p className="text-center text-[11px] text-stone-400 pt-2">
+                By continuing you agree to IGO Pharma's{" "}
+                <Link to="/privacy-policy" onClick={() => setShowLoginModal(false)} className="text-emerald-700 underline hover:text-emerald-900">Privacy Policy</Link>
+                {" "}&amp;{" "}
+                <Link to="/terms-conditions" onClick={() => setShowLoginModal(false)} className="text-emerald-700 underline hover:text-emerald-900">Terms</Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
