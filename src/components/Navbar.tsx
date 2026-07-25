@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   Search, Mic, ShoppingBag, Heart, User, Sparkles, Sliders, Menu, X,
   MapPin, Phone, FileText, ChevronDown, ShieldCheck, RefreshCw,
-  Award, Users, MessageCircle
+  Award, Users, MessageCircle, HelpCircle
 } from "lucide-react";
 import { useStore } from "../context/StoreContext";
 import { slugify } from "../utils/slug";
@@ -69,29 +69,14 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
 
   const categories: string[] = Array.from(new Set(products.map(p => p.category)));
 
-  // Five traditional product forms, matching IGO Pharma's real catalog
-  // structure (Churnam & Powders / Kashayam & Rasayanam / Thailam & Oils /
-  // Tablets & Capsules / Personal & Skin Care).
-  const CATEGORY_GROUPS: { label: string; match: (cat: string) => boolean }[] = [
-    { label: "Churnam & Powders", match: (c) => ["Churnam & Powders"].includes(c) },
-    { label: "Kashayam & Rasayanam", match: (c) => ["Kashayam & Rasayanam"].includes(c) },
-    { label: "Thailam & Oils", match: (c) => ["Thailam & Oils"].includes(c) },
-    { label: "Tablets & Capsules", match: (c) => ["Tablets & Capsules"].includes(c) }
-  ];
-  const categoryGroups = CATEGORY_GROUPS
-    .map(group => ({ label: group.label, items: categories.filter(group.match) }))
-    .filter(group => group.items.length > 0);
-  const groupedCats = new Set(categoryGroups.flatMap(g => g.items));
-  const otherCats = categories.filter(c => !groupedCats.has(c));
+  // Group products by category for the mega menu
+  const productsByCategory: Record<string, typeof products> = {};
+  categories.forEach(cat => {
+    productsByCategory[cat] = products.filter(p => p.category === cat);
+  });
 
-  // Common health conditions, matching IGO Pharma's wellness-concern catalog.
-  // Each links into the shop's text search so results stay relevant even
-  // beyond our tagged healthConcern values.
-  const HEALTH_CONDITIONS = [
-    "Pain Relief", "Skin Care", "Hair Care",
-    "Detox & Gut Health", "Women's Health", "Immunity",
-    "Men's Health", "Eye Care", "Diabetes Care"
-  ];
+  const HEALTH_CONDITIONS: string[] = Array.from(new Set(products.map(p => p.healthConcern))).filter((c): c is string => Boolean(c));
+
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-amber-100 bg-stone-50/95 shadow-sm backdrop-blur-md">
@@ -120,8 +105,6 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
             <Sliders className="h-3.5 w-3.5" />
             Enterprise Admin Portal
           </Link>
-          <span className="hidden md:inline">|</span>
-          <span className="hidden md:inline">Support / WhatsApp: +91 73977 89803</span>
         </div>
       </div>
 
@@ -250,14 +233,17 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
       {/* Main mega menu strip */}
       <nav className="hidden border-t border-amber-50/50 bg-stone-100 md:block">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 text-sm font-medium md:px-8">
-          <Link to="/" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+          <Link to="/" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Home
           </Link>
 
           {/* Products mega menu, grouped into shopper-friendly families */}
-          <div className="relative">
+          <div 
+            className="relative"
+            onMouseEnter={() => setActiveMegaMenu("categories")}
+            onMouseLeave={() => setActiveMegaMenu(null)}
+          >
             <button
-              onMouseEnter={() => setActiveMegaMenu("categories")}
               className="flex items-center gap-1.5 py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               Products
@@ -265,52 +251,48 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
             </button>
             {activeMegaMenu === "categories" && (
               <div
-                onMouseLeave={() => setActiveMegaMenu(null)}
-                className="absolute left-0 top-7 z-50 flex w-[36rem] gap-6 rounded-xl border border-stone-200 bg-white p-5 shadow-xl transition-all"
+                className="absolute left-0 top-7 z-50 w-[720px] max-w-[calc(100vw-2rem)] rounded-xl border border-stone-200 bg-white p-5 shadow-xl"
               >
-                {categoryGroups.map(group => (
-                  <div key={group.label} className="flex-1 space-y-1.5">
-                    <h4 className="text-[10px] font-black uppercase tracking-wider text-amber-700 font-mono mb-2">{group.label}</h4>
-                    {group.items.map(cat => (
+                <div className="grid grid-cols-3 gap-x-6 gap-y-4">
+                  {categories.map(cat => (
+                    <div key={cat} className="space-y-1">
                       <button
-                        key={cat}
                         onClick={() => { navigate(`/category/${slugify(cat)}`); setActiveMegaMenu(null); }}
-                        className="block w-full rounded-md px-2 py-1.5 text-left text-xs font-semibold text-stone-600 hover:bg-emerald-50 hover:text-emerald-950 transition-colors"
+                        className="text-[10px] font-black uppercase tracking-wider text-amber-700 font-mono mb-1.5 hover:text-emerald-800 transition-colors cursor-pointer text-left w-full border-b border-stone-100 pb-1"
                       >
                         {cat}
                       </button>
-                    ))}
-                  </div>
-                ))}
-                {otherCats.length > 0 && (
-                  <div className="flex-1 space-y-1.5">
-                    <h4 className="text-[10px] font-black uppercase tracking-wider text-amber-700 font-mono mb-2">More</h4>
-                    {otherCats.map(cat => (
-                      <button
-                        key={cat}
-                        onClick={() => { navigate(`/category/${slugify(cat)}`); setActiveMegaMenu(null); }}
-                        className="block w-full rounded-md px-2 py-1.5 text-left text-xs font-semibold text-stone-600 hover:bg-emerald-50 hover:text-emerald-950 transition-colors"
-                      >
-                        {cat}
-                      </button>
-                    ))}
-                    <Link
-                      to="/shop"
-                      onClick={() => setActiveMegaMenu(null)}
-                      className="block w-full rounded-md px-2 py-1.5 text-left text-xs font-bold text-emerald-800 hover:bg-emerald-50 transition-colors"
-                    >
-                      View All Products →
-                    </Link>
-                  </div>
-                )}
+                      {productsByCategory[cat]?.map(p => (
+                        <button
+                          key={p.id}
+                          onClick={() => { navigate(`/product/${p.id}`); setActiveMegaMenu(null); }}
+                          className="block w-full rounded-md px-2 py-1 text-left text-xs font-medium text-stone-600 hover:bg-emerald-50 hover:text-emerald-900 transition-colors"
+                        >
+                          {p.name}
+                        </button>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 pt-3 border-t border-stone-100">
+                  <button
+                    onClick={() => { navigate('/shop'); setActiveMegaMenu(null); }}
+                    className="text-xs font-bold text-emerald-800 hover:text-emerald-950 transition-colors"
+                  >
+                    View All Products →
+                  </button>
+                </div>
               </div>
             )}
           </div>
 
           {/* Health conditions mega menu */}
-          <div className="relative">
+          <div 
+            className="relative"
+            onMouseEnter={() => setActiveMegaMenu("conditions")}
+            onMouseLeave={() => setActiveMegaMenu(null)}
+          >
             <button
-              onMouseEnter={() => setActiveMegaMenu("conditions")}
               className="flex items-center gap-1.5 py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               Health Conditions
@@ -318,14 +300,13 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
             </button>
             {activeMegaMenu === "conditions" && (
               <div
-                onMouseLeave={() => setActiveMegaMenu(null)}
                 className="absolute left-0 top-7 z-50 grid w-[28rem] grid-cols-3 gap-1 rounded-xl border border-stone-200 bg-white p-3 shadow-xl transition-all"
               >
                 {HEALTH_CONDITIONS.map(condition => (
                     <button
                       key={condition}
                       onClick={() => {
-                        const categoryConditions = ["Skin Care", "Hair Care", "Detox & Gut Health", "Women's Health", "Eye Care"];
+                        const categoryConditions = ["Skin Care", "Hair Care", "Detox & Gut Health", "Women's Health", "Eye Care", "Pain Relief", "Diabetes & Metabolic Wellness", "Oral Care"];
                         if (categoryConditions.includes(condition)) {
                           navigate(`/category/${slugify(condition)}`);
                         } else {
@@ -343,24 +324,26 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
           </div>
 
 
-          <Link to="/consult" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
-            Doctor Consultations
-          </Link>
 
-          <Link to="/knowledge" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+
+          <Link to="/knowledge" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Blog &amp; Knowledge Center
           </Link>
 
-          <Link to="/wholesale" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+          <Link to="/wholesale" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Wholesale &amp; Franchising
           </Link>
 
-          <Link to="/about" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+          <Link to="/about" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             About Us
           </Link>
 
-          <Link to="/contact" className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+          <Link to="/contact" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
             Contact
+          </Link>
+
+          <Link to="/faq" onClick={() => setActiveMegaMenu(null)} onMouseEnter={() => setActiveMegaMenu(null)} className="shrink-0 whitespace-nowrap py-1 text-stone-700 hover:text-emerald-700 underline underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-emerald-600 transition-all duration-300 cursor-pointer">
+            FAQ
           </Link>
         </div>
       </nav>
@@ -404,7 +387,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
                 <button
                   key={condition}
                   onClick={() => {
-                    const categoryConditions = ["Skin Care", "Hair Care", "Detox & Gut Health", "Women's Health", "Eye Care"];
+                    const categoryConditions = ["Skin Care", "Hair Care", "Detox & Gut Health", "Women's Health", "Eye Care", "Pain Relief", "Diabetes & Metabolic Wellness", "Oral Care"];
                     if (categoryConditions.includes(condition)) {
                       navigate(`/category/${slugify(condition)}`);
                     } else {
@@ -419,13 +402,7 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
               ))}
             </div>
 
-            <p className="text-xs font-bold uppercase tracking-wider text-stone-400 mt-4">Consultation &amp; Info</p>
-            <button
-              onClick={() => { navigate("/consult"); setMobileMenuOpen(false); }}
-              className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
-            >
-              <Phone className="h-4 w-4 text-emerald-700" /> Book Certified Doctors
-            </button>
+            <p className="text-xs font-bold uppercase tracking-wider text-stone-400 mt-4">Info</p>
             <button
               onClick={() => { navigate("/knowledge"); setMobileMenuOpen(false); }}
               className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
@@ -450,6 +427,12 @@ export default function Navbar({ onOpenAIWellness }: NavbarProps) {
               className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
             >
               <MessageCircle className="h-4 w-4 text-emerald-700" /> Contact Us
+            </button>
+            <button
+              onClick={() => { navigate("/faq"); setMobileMenuOpen(false); }}
+              className="flex w-full items-center gap-2 py-1.5 hover:text-emerald-700"
+            >
+              <HelpCircle className="h-4 w-4 text-emerald-700" /> FAQ
             </button>
           </div>
         </div>

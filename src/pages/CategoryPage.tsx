@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { ChevronRight, Leaf } from "lucide-react";
 import ProductCard from "../components/ProductCard";
@@ -49,6 +49,18 @@ const CATEGORY_META: Record<string, { image: string; description: string }> = {
   "Immunity": {
     image: "/images/category-immunity.jpg",
     description: "Strengthen your body's natural defenses with time-tested immunity-boosting herbs, adaptogens, and Rasayana formulations."
+  },
+  "Pain Relief": {
+    image: "/images/pain relief.jpg",
+    description: "Natural Ayurvedic solutions for joint pain, muscle aches, arthritis, and inflammation — effective, safe, and side-effect free."
+  },
+  "Diabetes & Metabolic Wellness": {
+    image: "/images/diabetcs and  metabolic wellness.jpg",
+    description: "Clinically researched herbal formulations to support healthy blood sugar levels, metabolism, cholesterol, and overall metabolic health."
+  },
+  "Oral Care": {
+    image: "/images/oral care.jpg",
+    description: "Traditional herbal oral care products with Neem, Clove, and Mulethi for strong teeth, healthy gums, and lasting fresh breath."
   }
 };
 
@@ -64,13 +76,21 @@ const BROWSE_CATEGORIES = [
   "Detox & Gut Health",
   "Women's Health",
   "Immunity",
-  "Eye Care"
+  "Eye Care",
+  "Pain Relief",
+  "Diabetes & Metabolic Wellness",
+  "Oral Care"
 ];
 
 export default function CategoryPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { products, wishlist, addToCart, toggleWishlist } = useStore();
+
+  // Scroll to top immediately whenever the category slug changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [slug]);
 
   // Build full category list from products + our fixed ones
   const allProductCategories = useMemo(() => {

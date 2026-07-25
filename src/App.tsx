@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 
 import Navbar from "./components/Navbar";
@@ -12,8 +12,12 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
-import ConsultPage from "./pages/ConsultPage";
+
 import KnowledgePage from "./pages/KnowledgePage";
+import BlogDetailAyurvedaPage from "./pages/BlogDetailAyurvedaPage";
+import BlogDetailImmunityPage from "./pages/BlogDetailImmunityPage";
+import BlogDetailStressPage from "./pages/BlogDetailStressPage";
+import BlogDetailDetoxPage from "./pages/BlogDetailDetoxPage";
 import B2BPage from "./pages/B2BPage";
 import AdminPage from "./pages/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -36,6 +40,14 @@ import WishlistPage from "./pages/WishlistPage";
 import WalletTab from "./pages/account/WalletTab";
 import SecurityTab from "./pages/account/SecurityTab";
 
+function ScrollToTop() {
+  const { pathname, search } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname, search]);
+  return null;
+}
+
 export default function App() {
   const [showWellnessBot, setShowWellnessBot] = useState(false);
 
@@ -44,6 +56,7 @@ export default function App() {
 
       <Navbar onOpenAIWellness={() => setShowWellnessBot(true)} />
 
+      <ScrollToTop />
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage onOpenAIWellness={() => setShowWellnessBot(true)} />} />
@@ -53,8 +66,12 @@ export default function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/consult" element={<ConsultPage />} />
+
           <Route path="/knowledge" element={<KnowledgePage />} />
+          <Route path="/blog/power-of-ayurveda" element={<BlogDetailAyurvedaPage />} />
+          <Route path="/blog/immunity-boosters" element={<BlogDetailImmunityPage />} />
+          <Route path="/blog/stress-management" element={<BlogDetailStressPage />} />
+          <Route path="/blog/detox-ayurveda" element={<BlogDetailDetoxPage />} />
           <Route path="/wholesale" element={<B2BPage />} />
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/about" element={<AboutPage />} />

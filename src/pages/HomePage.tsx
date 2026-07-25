@@ -19,7 +19,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
     <div className="space-y-16 pb-16">
       <Hero
         onExploreProducts={() => navigate("/shop")}
-        onOpenConsultation={() => navigate("/consult")}
+
         onOpenAIWellness={onOpenAIWellness}
       />
 
@@ -87,12 +87,15 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
 
         <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { name: "Skin Care",          image: "/images/category-skin-care.jpg" },
-            { name: "Hair Care",          image: "/images/category-hair-care.jpg" },
-            { name: "Detox & Gut Health", image: "/images/category-detox-gut-health.jpg" },
-            { name: "Women's Health",     image: "/images/category-womens-health.jpg" },
-            { name: "Immunity",           image: "/images/category-immunity.jpg" },
-            { name: "Eye Care",           image: "/images/category-eye-care.jpg" }
+            { name: "Skin Care",                      image: "/images/category-skin-care.jpg" },
+            { name: "Hair Care",                      image: "/images/category-hair-care.jpg" },
+            { name: "Detox & Gut Health",             image: "/images/category-detox-gut-health.jpg" },
+            { name: "Women's Health",                 image: "/images/category-womens-health.jpg" },
+            { name: "Immunity",                       image: "/images/category-immunity.jpg" },
+            { name: "Eye Care",                       image: "/images/category-eye-care.jpg" },
+            { name: "Oral Care",                      image: "/images/oral care.jpg" },
+            { name: "Pain Relief",                    image: "/images/pain relief.jpg" },
+            { name: "Diabetes & Metabolic Wellness",  image: "/images/diabetcs and  metabolic wellness.jpg" }
           ].map(category => (
             <button
               key={category.name}
@@ -117,6 +120,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
           ))}
         </div>
       </div>
+
 
       {/* Premium Hair Care Subdivision */}
       <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
@@ -174,6 +178,87 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
         </div>
       </div>
 
+      {/* Pain Relief Subdivision */}
+      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
+        <div className="flex justify-between items-end border-b pb-4">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 font-mono">Natural Pain Management</span>
+            <h2 className="text-2xl font-black text-emerald-950">Ayurvedic Pain Relief</h2>
+          </div>
+          <button
+            onClick={() => navigate("/category/pain-relief")}
+            className="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
+          >
+            Browse Pain Relief <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {products.filter(p => p.category === "Pain Relief").slice(0, 4).map(prod => (
+            <ProductCard
+              key={prod.id}
+              product={prod}
+              onAddToCart={(p) => addToCart(p, 1, "once")}
+              onAddToWishlist={toggleWishlist}
+              isWishlisted={wishlist.some(item => item.id === prod.id)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Diabetes & Metabolic Wellness Subdivision */}
+      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
+        <div className="flex justify-between items-end border-b pb-4">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 font-mono">Metabolic Health</span>
+            <h2 className="text-2xl font-black text-emerald-950">Diabetes & Metabolic Wellness</h2>
+          </div>
+          <button
+            onClick={() => navigate("/category/diabetes-metabolic-wellness")}
+            className="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
+          >
+            Browse Metabolic Wellness <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {products.filter(p => p.category === "Diabetes & Metabolic Wellness").slice(0, 4).map(prod => (
+            <ProductCard
+              key={prod.id}
+              product={prod}
+              onAddToCart={(p) => addToCart(p, 1, "once")}
+              onAddToWishlist={toggleWishlist}
+              isWishlisted={wishlist.some(item => item.id === prod.id)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Oral Care Subdivision */}
+      <div className="mx-auto max-w-7xl px-4 md:px-8 space-y-6">
+        <div className="flex justify-between items-end border-b pb-4">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-800 font-mono">Herbal Oral Care</span>
+            <h2 className="text-2xl font-black text-emerald-950">Natural Oral Hygiene</h2>
+          </div>
+          <button
+            onClick={() => navigate("/category/oral-care")}
+            className="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer"
+          >
+            Browse Oral Care <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {products.filter(p => p.category === "Oral Care").slice(0, 4).map(prod => (
+            <ProductCard
+              key={prod.id}
+              product={prod}
+              onAddToCart={(p) => addToCart(p, 1, "once")}
+              onAddToWishlist={toggleWishlist}
+              isWishlisted={wishlist.some(item => item.id === prod.id)}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* AI Ecosystem panel */}
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="rounded-3xl bg-gradient-to-tr from-emerald-950 to-emerald-850 text-white p-8 md:p-12 grid gap-8 md:grid-cols-2 items-center relative overflow-hidden">
@@ -189,12 +274,7 @@ export default function HomePage({ onOpenAIWellness }: HomePageProps) {
             </p>
 
             <div className="flex flex-wrap gap-3 pt-2">
-              <button
-                onClick={() => { navigate("/consult"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                className="rounded-xl bg-amber-400 text-emerald-950 px-6 py-3 text-xs font-bold hover:bg-amber-300 transition-colors shadow-md cursor-pointer"
-              >
-                Diagnose Prakriti Now
-              </button>
+
               <button
                 onClick={onOpenAIWellness}
                 className="rounded-xl border border-stone-400/50 hover:bg-white/10 px-6 py-3 text-xs font-bold transition-all cursor-pointer"

@@ -26,6 +26,15 @@ export default function ProductPage() {
   const [bundleAdded, setBundleAdded] = useState(false);
   const [addedToast, setAddedToast] = useState(false);
 
+  React.useEffect(() => {
+    if (product) {
+      setActiveImage(product.image);
+      setActiveTab("benefits");
+      setQuantity(1);
+      setSubscriptionType("once");
+    }
+  }, [product?.id]);
+
   if (!product) {
     return <Navigate to="/shop" replace />;
   }
@@ -108,7 +117,7 @@ export default function ProductPage() {
               <img
                 src={activeImage}
                 alt={product.name}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain p-4"
                 referrerPolicy="no-referrer"
               />
             )}
@@ -129,7 +138,7 @@ export default function ProductPage() {
                 onClick={() => { setActiveImage(img); setIs360Mode(false); }}
                 className={`h-16 w-16 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${activeImage === img && !is360Mode ? 'border-emerald-700 shadow-sm' : 'border-stone-100'}`}
               >
-                <img src={img} alt={`Thumbnail ${i + 1}`} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                <img src={img} alt={`Thumbnail ${i + 1}`} className="h-full w-full object-contain bg-white" referrerPolicy="no-referrer" />
               </button>
             ))}
           </div>
@@ -174,30 +183,32 @@ export default function ProductPage() {
               )}
             </div>
 
-            <div className="border-t border-stone-200 pt-3 space-y-2.5">
-              <label className="block text-xs font-bold text-stone-700">Buying Options</label>
-              <div className="grid grid-cols-3 gap-2">
-                <button
-                  onClick={() => setSubscriptionType("once")}
-                  className={`rounded-xl border p-2.5 text-center transition-all cursor-pointer ${subscriptionType === "once" ? 'border-emerald-700 bg-emerald-50/50 text-emerald-950 font-bold' : 'border-stone-200 hover:bg-stone-100 text-stone-600'}`}
-                >
-                  <span className="block text-xs">Buy Once</span>
-                  <span className="text-[10px] font-mono text-stone-500">Regular order</span>
-                </button>
-                <button
-                  onClick={() => setSubscriptionType("monthly")}
-                  className={`rounded-xl border p-2.5 text-center transition-all cursor-pointer ${subscriptionType === "monthly" ? 'border-emerald-700 bg-emerald-50/50 text-emerald-950 font-bold' : 'border-stone-200 hover:bg-stone-100 text-stone-600'}`}
-                >
-                  <span className="block text-xs text-emerald-800 font-bold">Subscribe</span>
-                  <span className="text-[10px] font-mono text-emerald-600">-15% Monthly</span>
-                </button>
-                <button
-                  onClick={() => setSubscriptionType("bi-monthly")}
-                  className={`rounded-xl border p-2.5 text-center transition-all cursor-pointer ${subscriptionType === "bi-monthly" ? 'border-emerald-700 bg-emerald-50/50 text-emerald-950 font-bold' : 'border-stone-200 hover:bg-stone-100 text-stone-600'}`}
-                >
-                  <span className="block text-xs text-emerald-800 font-bold">Subscribe</span>
-                  <span className="text-[10px] font-mono text-emerald-600">-15% Bi-Monthly</span>
-                </button>
+            <div className="border-t border-stone-200 pt-4 mt-4">
+              <div className="grid grid-cols-4 gap-2 text-center">
+                <div className="flex flex-col items-center justify-start gap-2 cursor-default group">
+                  <div className="h-10 w-10 flex items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm text-lg group-hover:scale-105 transition-transform">
+                    🚫
+                  </div>
+                  <span className="text-[11px] font-medium text-[#007185] leading-tight hover:text-[#C7511F] transition-colors">Non-<br/>Returnable</span>
+                </div>
+                <div className="flex flex-col items-center justify-start gap-2 cursor-default group">
+                  <div className="h-10 w-10 flex items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm text-lg group-hover:scale-105 transition-transform">
+                    🤝
+                  </div>
+                  <span className="text-[11px] font-medium text-[#007185] leading-tight hover:text-[#C7511F] transition-colors">Pay on<br/>Delivery</span>
+                </div>
+                <div className="flex flex-col items-center justify-start gap-2 cursor-default group">
+                  <div className="h-10 w-10 flex items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm text-lg group-hover:scale-105 transition-transform">
+                    👑
+                  </div>
+                  <span className="text-[11px] font-medium text-[#007185] leading-tight hover:text-[#C7511F] transition-colors">Top<br/>Brand</span>
+                </div>
+                <div className="flex flex-col items-center justify-start gap-2 cursor-default group">
+                  <div className="h-10 w-10 flex items-center justify-center rounded-full border border-stone-200 bg-white shadow-sm text-lg group-hover:scale-105 transition-transform">
+                    🔒
+                  </div>
+                  <span className="text-[11px] font-medium text-[#007185] leading-tight hover:text-[#C7511F] transition-colors">Secure<br/>Transaction</span>
+                </div>
               </div>
             </div>
           </div>

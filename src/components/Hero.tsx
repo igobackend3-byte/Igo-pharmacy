@@ -4,11 +4,11 @@ import heroVideo from "../video2.mp4";
 
 interface HeroProps {
   onExploreProducts: () => void;
-  onOpenConsultation: () => void;
+
   onOpenAIWellness: () => void;
 }
 
-export default function Hero({ onExploreProducts, onOpenConsultation, onOpenAIWellness }: HeroProps) {
+export default function Hero({ onExploreProducts, onOpenAIWellness }: HeroProps) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const slides = [
@@ -81,12 +81,7 @@ export default function Hero({ onExploreProducts, onOpenConsultation, onOpenAIWe
                 {slides[activeSlide].buttonText}
                 <ArrowRight className="h-4.5 w-4.5" />
               </button>
-              <button
-                onClick={onOpenConsultation}
-                className="inline-flex items-center gap-2 rounded-xl border border-stone-200/40 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-bold text-white hover:bg-white/20 transition-all cursor-pointer"
-              >
-                Consult a Doctor
-              </button>
+
             </div>
           </div>
         </div>
