@@ -100,6 +100,21 @@ export interface Appointment {
   meetingLink?: string;
 }
 
+export interface AdminBlog {
+  id: string;
+  title: string;
+  category: string;
+  author: string;
+  date: string;
+  status: 'Published' | 'Draft';
+  featured: boolean;
+  views: number;
+  image: string;
+  readTime: string;
+  snippet: string;
+  seoScore: number;
+}
+
 export interface Blog {
   id: string;
   title: string;
@@ -158,4 +173,25 @@ export interface Order {
   address: Address;
   trackingNumber?: string;
   carrier?: string;
+  invoiceUrl?: string;
+}
+
+export interface Coupon {
+  code: string;
+  discount: number;
+  type: "percentage" | "flat";
+  status: "Active" | "Inactive" | "Expired";
+  expiryDate?: string;
+  usageLimit?: number;
+  usedCount?: number;
+  minPurchase?: number;
+}
+
+export interface BannerConfig {
+  title: string;
+  subtitle: string;
+  image: string;
+  ctaText?: string;
+  ctaLink?: string;
+  publishStatus?: "Published" | "Draft";
 }

@@ -50,11 +50,13 @@ function ScrollToTop() {
 
 export default function App() {
   const [showWellnessBot, setShowWellnessBot] = useState(false);
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-850 flex flex-col font-sans selection:bg-emerald-800 selection:text-white">
 
-      <Navbar onOpenAIWellness={() => setShowWellnessBot(true)} />
+      {!isAdminRoute && <Navbar onOpenAIWellness={() => setShowWellnessBot(true)} />}
 
       <ScrollToTop />
       <main className="flex-1">
@@ -98,23 +100,24 @@ export default function App() {
         </Routes>
       </main>
 
-      {/* Floating Widget: Click to open AI Wellness chat Anywhere! */}
-      <div className="fixed bottom-6 right-6 z-40">
-        {showWellnessBot ? (
-          <div className="shadow-2xl">
-            <AIWellnessBot onClose={() => setShowWellnessBot(false)} />
-          </div>
-        ) : (
-          <button
-            onClick={() => setShowWellnessBot(true)}
-            className="rounded-full bg-emerald-800 text-amber-200 p-4 shadow-lg hover:bg-emerald-950 hover:scale-105 transition-all cursor-pointer flex items-center justify-center border-2 border-amber-300"
-          >
-            <Sparkles className="h-6 w-6 animate-pulse" />
-          </button>
-        )}
-      </div>
+      {!isAdminRoute && (
+        <div className="fixed bottom-6 right-6 z-40">
+          {showWellnessBot ? (
+            <div className="shadow-2xl">
+              <AIWellnessBot onClose={() => setShowWellnessBot(false)} />
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowWellnessBot(true)}
+              className="rounded-full bg-emerald-800 text-amber-200 p-4 shadow-lg hover:bg-emerald-950 hover:scale-105 transition-all cursor-pointer flex items-center justify-center border-2 border-amber-300"
+            >
+              <Sparkles className="h-6 w-6 animate-pulse" />
+            </button>
+          )}
+        </div>
+      )}
 
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </div>
   );
 }

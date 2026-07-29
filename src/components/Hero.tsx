@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { Sparkles, Leaf, Shield, Award, ArrowRight, Heart } from "lucide-react";
 import heroVideo from "../video2.mp4";
+import { useStore } from "../context/StoreContext";
 
 interface HeroProps {
   onExploreProducts: () => void;
-
   onOpenAIWellness: () => void;
 }
 
 export default function Hero({ onExploreProducts, onOpenAIWellness }: HeroProps) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const { bannerConfig } = useStore();
 
   const slides = [
     {
-      title: "Vedic Science Meets Modern Purity",
+      title: bannerConfig.title || "Vedic Science Meets Modern Purity",
       subtitle: "100% ORGANIC & LAB-TESTED REMEDIES",
-      desc: "Restore absolute balance to your body with our premium Ayurvedic formulations. Prescribed by empaneled doctors, crafted in GMP Certified pharmacies, and delivered with love.",
+      desc: bannerConfig.subtitle || "Restore absolute balance to your body with our premium Ayurvedic formulations. Prescribed by empaneled doctors, crafted in GMP Certified pharmacies, and delivered with love.",
       buttonText: "Shop Raw Remedies",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200",
+      image: bannerConfig.image || "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200",
       accent: "from-emerald-950 to-emerald-900",
       tag: "Tridosha Equilibrium"
     },

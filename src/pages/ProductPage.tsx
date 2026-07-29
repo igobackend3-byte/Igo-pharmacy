@@ -13,7 +13,25 @@ export default function ProductPage() {
   const navigate = useNavigate();
   const { products, wishlist, addToCart, toggleWishlist } = useStore();
 
-  const product = products.find(p => p.id === id);
+  let product = products.find(p => p.id === id);
+
+  if (product) {
+    product = {
+      ...product,
+      system: product.system || "GENERAL",
+      images: product.images && product.images.length > 0 ? product.images : (product.image ? [product.image] : []),
+      benefits: product.benefits || [],
+      usage: product.usage || "No usage instructions available.",
+      dosage: product.dosage || "No dosage information available.",
+      ingredients: product.ingredients || [],
+      storage: product.storage || "No storage information available.",
+      contraindications: product.contraindications || [],
+      reviewsList: product.reviewsList || [],
+      qaList: product.qaList || [],
+      rating: product.rating || 0,
+      reviewsCount: product.reviewsCount || 0,
+    };
+  }
 
   const [activeTab, setActiveTab] = useState<"benefits" | "usage" | "ingredients" | "safety">("benefits");
   const [activeImage, setActiveImage] = useState(product?.image || "");
